@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include "vector_utils.h"
+
+
+int main() {
+    float T[100]; int T2[100]; float *x; int *x2; int b;
+    
+    printf("Podaj wektor:");
+    x=T;
+    x2=T2;
+    b=read_vector_float(x,100,-1);
+    if(b==-1||b==0)
+    {
+        printf("Not enough data available");
+        return 3;
+    }
+    if(b==-2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+
+
+    create_histogram(x,b,x2,11);
+
+    display_vector(x2,11);
+    return 0;
+}
+

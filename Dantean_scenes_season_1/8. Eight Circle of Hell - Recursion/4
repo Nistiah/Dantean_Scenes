@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+unsigned long sum_rec(int n);
+
+
+int main() {
+    int d;
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(d<1)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+    printf("%lu", sum_rec(d));
+
+    return 0;
+}
+
+unsigned long sum_rec(int n)
+{
+if (n<0)
+{
+    return 0;
+}
+if (n==0)
+{
+    return 0;
+}
+
+if (n==1)
+{
+return 1;
+}else
+return n+sum_rec(n-1);
+}
+

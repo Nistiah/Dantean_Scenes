@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include "vector_utils.h"
+
+
+int main() {
+    int T[150]; int *x; int b,c, cc,d;
+    int shiftt;
+    enum direction dir;
+    printf("Podaj wektor:");
+    x=T;
+    b=read_vector(x,150,0);
+    if(b==-1||b==0)
+    {
+        printf("Not enough data available");
+        return 3;
+    }
+    if(b==-2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj przesuniecie:");
+    cc=scanf("%d",&shiftt);
+    if(cc!=1)
+    {
+
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj przesuniecie:");
+    c=scanf("%d",&d);
+    dir=d;
+    if(c!=1)
+    {
+
+        printf("Incorrect input");
+        return 1;
+    }
+    if(d<1||d>2)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+
+    shift(x,b,shiftt,dir);
+
+    display_vector(x,b);
+    return 0;
+}
+

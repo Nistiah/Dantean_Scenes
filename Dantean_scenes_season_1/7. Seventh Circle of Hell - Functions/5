@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int add(int a,int b)
+{
+return a+b;
+}
+
+int main(){
+    int a, b;
+    printf("Podaj 1 liczbÄ:");
+
+    if(scanf("%d", &a)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }else
+    {
+        printf("Podaj 2 liczbÄ:");
+        if(scanf("%d", &b)!=1)
+        {
+            printf("Incorrect input");
+            return 1;
+        }else{
+        printf("Wynik: %d",add(a,b));
+    }
+}   return 0;
+}

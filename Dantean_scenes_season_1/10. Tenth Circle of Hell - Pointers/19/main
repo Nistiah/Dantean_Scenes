@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include "vector_utils.h"
+
+int reverse_vector(int* tab, int size);
+
+int main() {
+    int T[100]; int *x; int b,d;
+
+    printf("Podaj wektor:");
+    x=T;
+    b=read_vector(x,100,0);
+    if(b==-1||b==0)
+    {
+        printf("Not enough data available");
+        return 3;
+    }
+    if(b==-2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    display_vector(x,b);
+    x=T;
+    d=reverse_vector(x,b);
+    if(d==1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    x=T;
+    display_vector(x,b);
+
+
+    return 0;
+}
+int reverse_vector(int* tab, int size)
+{
+    if(tab==NULL||size<1)
+    {
+        return 1;
+    }
+    int c, *a;
+    a=&c;
+    for(int i=0; i<(size/2);i++)
+    {
+
+        *a=*tab;
+        *tab=*(tab+size-1-i-i);
+        *(tab+size-1-i-i)=*a;
+        tab++;
+    }
+    return 0;
+}
+

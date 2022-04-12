@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+void display_vector(const int vec[], int size)
+{
+        for (int i = 0; i < size; i++) {
+            printf("%d ", vec[i]);
+    }
+}
+
+int generate(int lotto[],int N, int start, int end) {
+    srand( time( NULL ) );
+    if(start>end)
+    {
+        return -1;
+    }
+    if(N>(end-start+1))
+    {
+        return -1;
+    }
+    for(int i=0; i<N;i++) {
+
+        if(end>start) {
+            lotto[i] = (rand() % (end - start)) + start;
+            for(int j=0;j<i; j++)
+            {
+                if(lotto[j]==lotto[i])
+                {
+                    i--;
+                    break;
+                }else
+                {continue;}
+            }
+        }else
+        {
+            lotto[i]=start;
+        }
+        }
+
+    return 0;
+}
+
+
+
+int main() {
+    int lotto[6];int m;
+    m=generate(lotto, 6,1,49);
+        if(m!=-1)
+        display_vector(lotto,6);
+    return 0;
+}
+
+

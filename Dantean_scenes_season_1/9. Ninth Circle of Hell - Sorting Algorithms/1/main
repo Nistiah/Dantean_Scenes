@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include "vector_utils.h"
+
+int bubble_sort(int tab[], int size);
+int main() {
+    int d[150], x;
+    printf("podaj wektor:");
+    x=read_vector(d,150,0);
+    if(x==-2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(x==-1)
+    {
+        printf("Not enough data available");
+        return 3;
+    }
+    bubble_sort(d, x);
+    display_vector(d,x);
+    return 0;
+}
+int bubble_sort(int tab[], int size)
+{
+    if (size<=0)
+    {return 1;}
+    int x,c=1;
+    for (int i=0; i<size-1; i++)
+    {
+        for(int j=1; j<size; j++)
+        {
+            if (tab[j-1]>tab[j])
+            {
+                x=tab[j-1];
+                tab[j-1]=tab[j];
+                tab[j]=x;
+            }else
+            {c++;}
+        }
+        if(c==size-1)
+        {break;}
+        display_vector(tab,size);
+        c=0;
+    }
+    return 0;
+}

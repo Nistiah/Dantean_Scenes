@@ -1,0 +1,97 @@
+#include <stdio.h>
+
+int sum(const float* tab, unsigned int size, float *result);
+int avg(const float* tab, unsigned int size, float *result);
+int read_vector_float(float *vec, int size, float stop_value);
+
+int main() {
+    float T[100]; float *x, *powynik; int b;float wynik=0;
+    printf("Ile liczb chcesz wprowadziÄ?");
+    x=T;
+    powynik=&wynik;
+    b=read_vector_float(x,100,0);
+    if(b==-1||b==0)
+    {
+        printf("Not enough data available");
+        return 3;
+    }
+    if(b==-2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    x=T;
+    sum(x, b,powynik);    x=T;
+    printf("Suma: %.2f\n", wynik );
+    wynik=0;
+    avg(x, b,powynik);    x=T;
+    printf("Srednia: %.2f", wynik );
+    return 0;
+}
+int sum(const float *tab, unsigned int size, float *result)
+{
+    if (size<1)
+    {
+        return 1;
+    }
+    float suma=0;
+    printf("%d", size);
+    if(tab==NULL||result==NULL)
+        return 1;
+    for(unsigned int i=1; i<=size; i++)
+    {
+        suma+=*tab;
+        tab++;
+
+    }
+    *result=suma;
+    return 0;
+}
+int avg(const float *tab, unsigned int size, float *result)
+{   float suma=0;
+    if (size<1)
+    {
+        return 1;
+    }
+    printf("%d", size);
+    if(tab==NULL||result==NULL)
+        return 1;
+    for(unsigned int i=1; i<=size; i++)
+    {
+        suma+=*tab;
+        tab++;
+
+    }
+    *result=suma/(float)(size+0);
+    return 0;
+}
+int read_vector_float(float *vec, int size, float stop_value)
+{
+    if (0>size)
+    {
+        return -1;
+    }
+    if(vec==NULL)
+        return -1;
+
+    int j=size;
+    for (int i=0; i<size; i++)
+    {
+        if(scanf("%f", vec)!=1)
+        {
+            return -2;
+        }
+        if(*vec==stop_value) {
+            j=i;
+            return j;
+        }
+        vec++;
+    }
+    if (1>j)
+    {
+        return -1;
+    }
+    while(getchar()!='\n')
+    {}
+    return j;
+}

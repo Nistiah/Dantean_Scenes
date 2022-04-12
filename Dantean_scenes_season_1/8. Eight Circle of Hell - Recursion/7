@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int GCD(int a, int b);
+
+int main() {
+    int d, c;
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &c)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("%d", GCD(d,c));
+
+    return 0;
+}
+
+int GCD(int a, int b)
+{
+    if(b<0)
+    {
+        b*=-1;
+    }
+    if(a<0)
+    {
+        a*=-1;
+    }
+    if(b>a)
+    {
+       int mod;
+       mod=b;
+       b=a;
+       a=mod;
+    }
+
+    if (b==0)
+    {
+        return a;
+    }
+    if(b==1)
+    {
+        return 1;
+    }
+    if (b>1)
+    {
+        return GCD(b, a%b);
+    }
+
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+float circumference(float b);
+
+int main(){
+    float d;
+    printf("Podaj srednice kola:");
+
+    if(scanf("%f", &d)!=1||d<=0)
+    {
+        circumference(-1);
+        printf("Incorrect input");
+        return 1;
+    }else
+    {
+        printf("Obwod kola to %.4f",circumference(d));
+    }
+    return 0;
+}
+float circumference(float b)
+{
+    if(b!=-1) {
+        b /= 2;
+        b = b * 2 * 3.141592;
+        return b;
+    }else
+        return -1;
+}

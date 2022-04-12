@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+unsigned long  reverse_number(unsigned long a);
+int dlugosc(unsigned long b);
+unsigned long long poww(unsigned long long a, int b);
+int main() {
+    unsigned long long a,b,c;
+
+    printf("Podaj wartosc n: ");
+    if (scanf("%llu", &a)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+    b=reverse_number(a);
+    printf("Podaj wartosc n: ");
+    if (scanf("%llu", &b)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+
+    c=reverse_number(reverse_number(a)+reverse_number(b));
+    printf("%llu",c);
+
+
+    return 0;
+}
+
+unsigned long reverse_number(unsigned long  a)
+{
+    if (a<10)
+    {
+        return a;
+    }
+
+    return (a%10)*poww(10,dlugosc(a/10))+reverse_number(a/10);
+}
+int dlugosc(unsigned long b)
+{
+    if (b<10)
+    {
+        return 1;
+    }else
+        return dlugosc(b/10)+1;
+}
+unsigned long long poww(unsigned long long a, int b)
+{
+    if(b==0) {
+        return 1;
+    }else{
+        return a*poww(a, b-1);
+    }
+
+}

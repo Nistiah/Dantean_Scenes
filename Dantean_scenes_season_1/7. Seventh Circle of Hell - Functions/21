@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <math.h>
+
+float average(const int tab[], int size)
+{
+    if (size<1)
+    {
+        return -1;
+    }
+    float suma=0;
+    for (int i=0; i<size; i++)
+    {
+        suma+=(float)tab[i];
+    }
+    return suma/((float)size);
+
+}
+float stdDev(const int tab[], int size)
+{
+    if (size<1)
+    {
+        return -1;
+    }
+    float deviation=0, av;
+    av=average(tab, size);
+    for (int i=0; i<size; i++)
+    {
+        deviation+=(float)pow((float)tab[i]-av, 2);
+    }
+    deviation/=(float)size;
+    deviation=sqrtf(deviation);
+    return deviation;
+}
+
+
+int main(){
+    int tab[100];
+    int d, ostatni=100;
+    printf("podaj liczby:");
+    for(int i=0; i<100;i++) {
+        if(scanf("%d", &d)!=1) {
+            printf("Incorrect input");
+            return 1;
+        }else {
+            if(d==0)
+            {
+                ostatni=i;
+                tab[i]=d;
+                i=99;
+            }
+            else {
+                tab[i]=d;
+            }
+        }
+    }
+    if (ostatni==0)
+    {
+        printf("not enough data available");
+        return 2;
+    }
+    printf("%.2f\n%.2f", average(tab, ostatni), stdDev(tab, ostatni));
+
+
+
+
+
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+long long binary_exponentiation(long long a, unsigned int n);
+
+int main() {
+    long long d;
+    unsigned int c;
+    printf("Podaj wartosc n: ");
+    if (scanf("%lli", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj wartosc n: ");
+    if (scanf("%u", &c)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+
+    printf("%lli", binary_exponentiation(d,c));
+
+    return 0;
+}
+
+long long binary_exponentiation(long long a, unsigned int n){
+    if(n==0)
+    {return 1;}
+    if(n%2==1)
+    {
+        return a*binary_exponentiation(a*a, (n-1)/2);
+    }else
+    {
+        return binary_exponentiation(a*a, n/2);
+    }
+
+
+
+}
+

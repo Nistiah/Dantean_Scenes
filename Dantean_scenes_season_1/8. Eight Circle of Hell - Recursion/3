@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+long int fibonacci(int n);
+
+
+int main() {
+    int d;
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(d<0)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+    printf("%li", fibonacci(d));
+
+    return 0;
+}
+
+long int fibonacci(int n)
+{
+if (n<0)
+{
+    return -1;
+}
+if (n==0)
+{
+    return 0;
+}
+
+if (n==1)
+{
+return 1;
+}else
+return fibonacci(n-1)+fibonacci(n-2);
+}
+

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+float poly(float x)
+{
+    return 5*x*x+12.55*x+0.75;
+}
+
+int main() {
+    float x;
+    printf("podaj wartosc x: ");
+    if(scanf("%f", &x)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Wynik: %.2f", poly(x));
+    return 0;
+}
+
+

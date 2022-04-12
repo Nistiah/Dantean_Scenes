@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int even_odd(int s, int n);
+
+int main() {
+    int d, c;
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &c)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(c<0)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+
+    printf("%d", even_odd(d,c));
+
+    return 0;
+}
+
+int even_odd(int s, int n) {
+    int x;
+    if (n<0)
+    {
+        return 0;
+    }
+    if (n == 0) {
+        return s;
+    }
+    x=even_odd(s, n-1);
+    if  (x%2==1||x%2==-1) {
+        return 3 * x + 1;
+    }else{
+        return x / 2;
+    }
+}
+

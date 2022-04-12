@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <math.h>
+
+float distance(int x1,int y1,int x2,int y2)
+{
+    return(sqrtf((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)));
+}
+float perimeter(float a,float b,float c)
+{
+    if(((a>0)&&(b>0)&&(c>0))&&(a+b>c)&&(a+c>b)&&(c+b)>a) {
+        return (a + b + c);
+    }else
+        return -1;
+
+}
+float area(float a,float b,float c)
+{
+    if(((a>0)&&(b>0)&&(c>0))&&(a+b>c)&&((a+c)>b)&&(c+b)>a) {
+        return sqrt(perimeter(a,b,c)/2 * (perimeter(a,b,c)/2-a) * (perimeter(a,b,c)/2-b) * (perimeter(a,b,c)/2-c));
+    }else
+    {return -1;}
+
+}
+
+int main(){
+    int x1,y1,x2,y2,x3,y3;
+    float a, b, c;
+    printf("Podaj wspolrzedne pierwszego punktu :");
+    if(scanf("(%d, %d)", &x1, &y1)!=2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    getchar();
+    printf("Podaj wspolrzedne drugiego punktu :");
+
+    if(scanf("(%d, %d)", &x2, &y2)!=2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    getchar();
+    printf("Podaj wspolrzedne trzeciego punktu :");
+
+    if(scanf("(%d, %d)", &x3, &y3)!=2)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    a=distance(x1,y1,x2,y2);
+    b=distance(x1,y1,x3,y3);
+    c=distance(x2,y2,x3,y3);
+    if(perimeter(a,b,c)==-1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+    printf("rozmiar %.2f", area(a,b,c));
+
+    return 0;
+}

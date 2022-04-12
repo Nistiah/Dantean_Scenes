@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+    float T[100]; float *x; int a,b;float suma=0;
+    printf("Ile liczb chcesz wprowadziÄ?");
+    a=scanf("%d", &b);
+    if(a!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(b<=0||b>100)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+    x=T;
+
+    printf("Podaj liczby");
+    for(int i=0; i<b; i++)
+    {
+        if(scanf("%f", x)!=1)
+        {
+            printf("Incorrect input");
+            return 1;
+        }
+        x++;
+    }
+    x--;
+    for(int i=0; i<b; i++)
+    {
+        suma+=*x;
+        printf("%f ",*x);
+        x--;
+
+    }
+    printf("\n Suma: %.2f\nSrednia: %.2f",suma, suma/(float)b);
+
+
+    return 0;
+}

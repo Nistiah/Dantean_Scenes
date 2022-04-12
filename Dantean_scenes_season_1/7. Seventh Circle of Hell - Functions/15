@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+float toRadian(float x)
+{
+    return 3.14159/(180/x);
+
+}
+float toDegree(float x)
+{
+    return x*57.295779;
+}
+
+int main(){
+    int x; float y;
+    printf("Wybierz rodzaj konwersji (1=stopnie na radiany, 2=radiany na stopnie) :");
+
+    if(scanf("%d", &x)!=1||(x!=1&&x!=2))
+    {
+        printf("Incorrect input");
+        return 1;
+    }else
+    {
+        getchar();
+        printf("Podaj miare kata: ");
+        if(scanf("%f", &y)==1) {
+            if (x == 1) {
+                y = toRadian(y);
+            } else {
+                y = toDegree(y);
+            }
+        }else
+        {
+            printf("Incorrect input");
+            return 1;
+        }
+
+        printf("wynik: %.2f", y);
+
+    }
+
+
+
+
+    return 0;
+}

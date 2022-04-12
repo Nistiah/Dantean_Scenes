@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int sum_of_digits(long long number);
+
+int main() {
+    long long d;
+    printf("Podaj wartosc n: ");
+    if (scanf("%lli", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+
+
+    printf("%d", sum_of_digits(d));
+
+    return 0;
+}
+
+int sum_of_digits(long long number){
+    if(number<0)
+    {
+        number*=-1;
+    }
+    if(number<10)
+    {return number;}
+   else return (number%10)+(sum_of_digits(number/10));
+
+
+
+}
+

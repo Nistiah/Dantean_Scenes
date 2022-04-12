@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int sum_of_digits(long long number);
+int is_divisible_by_3(int number);
+
+
+int main() {
+    int d;
+
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(is_divisible_by_3(d)==1)
+    {
+        printf("YES");
+    }else
+        printf("NO");
+
+    return 0;
+}
+
+int sum_of_digits(long long number) {
+    if (number < 0) {
+        number *= -1;
+    }
+    if (number < 10) { return number; }
+    else return (number % 10) + (sum_of_digits(number / 10));
+}
+int is_divisible_by_3(int number){
+    int x=sum_of_digits(number);
+    if (x>9){x=sum_of_digits(x);}if (x>9){x=sum_of_digits(x);}
+    if(x==3||x==9||x==6||x==0)
+    {
+        return 1;
+    }else
+        return 0;
+
+}
+
+
+
+
+

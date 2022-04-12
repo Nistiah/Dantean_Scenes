@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+float add(float a,float b)
+{
+return a+b;
+}
+
+float multiply(float a,float b)
+{
+    return a*b;
+}
+float divide(float a, float b)
+{
+    if(b==0)
+    {
+        printf("Operation not permitted");
+        return -1;
+    }else
+    return a/b;
+}
+float subtract(float a, float b)
+{
+    return a-b;
+}
+
+int main(){
+    float a, b;
+    printf("Podaj 1 liczbÄ:");
+
+    if(scanf("%f", &a)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }else
+    {
+        printf("Podaj 2 liczbÄ:");
+        if(scanf("%f", &b)!=1)
+        {
+            printf("Incorrect input");
+            return 1;
+        }else{
+        printf("Suma: %f\n",add(a,b));
+            printf("Roznica: %f\n",subtract(a,b));
+            printf("Iloczyn: %f\n",multiply(a,b));
+            if(b!=0) {
+                printf("Iloraz: %f\n", divide(a, b));
+            }else
+            {
+                divide(a,b);
+            }
+    }
+}
+    return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main() {
+    float T[20]; float *x; int zarodek;
+    time_t tt;
+    zarodek = time(&tt);
+    srand(zarodek);
+    x=T;
+    for(int i=0; i<20; i++)
+    {
+        *x=(float)(rand()%100)/100;
+        printf("%.2f ",*x);
+        x++;
+
+    }
+    printf("\n");
+    x=T;
+    for(int i=0; i<10; i++)
+    {
+        printf("%.2f ",*x);
+        x++;
+        x++;
+    }
+    return 0;
+}

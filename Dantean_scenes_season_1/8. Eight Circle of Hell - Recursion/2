@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+long power_rec(int a, int n);
+
+
+int main() {
+    int d, b;
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &d)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj wartosc n: ");
+    if (scanf("%d", &b)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(b<0)
+    {
+        printf("Incorrect input data");
+        return 2;
+    }
+    printf("%li", power_rec(d,b));
+
+    return 0;
+}
+
+long power_rec(int a, int n)
+{
+if (n<0)
+{
+    return 0;
+}
+if (n==0)
+{
+    return 1;
+}
+
+if (n==1)
+{
+return a;
+}else
+return a*power_rec(a,n-1);
+}
+
