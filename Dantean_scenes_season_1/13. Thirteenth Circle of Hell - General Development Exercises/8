@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+
+int dlugosc(int liczba){
+    if(liczba<10||liczba>100000){return 1;}
+    else{return 1+dlugosc(liczba/10);}
+
+}
+
+int main(){
+    int liczba1, liczba2, liczba3,liczba4;
+    printf("Podaj liczbe:");
+    int c=0;
+    if(scanf("%d",&liczba1)!=1){
+        printf("Incorrect input");
+        return 1;
+    }
+    if(liczba1>100000){
+        printf("Incorrect input");
+        return 1;
+    }
+    if(liczba1>10) {
+        liczba2 = (int) pow(10, dlugosc(liczba1-1) -1) - 1;
+        liczba3 = (int) pow(10, dlugosc(liczba1-1)- 2) - 1;
+        liczba4 = (int) pow(10, dlugosc(liczba1-1)) - 1;
+
+
+        for (int i = liczba4; i > liczba2; i--) {
+            for (int j = liczba2; j > liczba3; j--) {
+                if (i + j == liczba1) {
+                    printf("%d + %d = %d\n", i, j, liczba1);
+                    c++;
+                    break;
+                }
+            }
+        }
+    }
+    if(c==0){
+        printf("Nothing to show");
+    }
+
+
+
+    return 0;
+}

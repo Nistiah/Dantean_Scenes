@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <string.h>
+
+struct student_t {
+    char name[20];
+    char surname[40];
+    int index;
+};
+struct student_t* read(struct student_t* p, int *err_code);
+void show(const struct student_t* p);
+
+int main() {
+    printf("Podaj dane:");
+    struct student_t a, *p1;
+    p1 = &a;
+    int error = 0;
+    int *p_error;
+    p_error = &error;
+    read(p1, p_error);
+    if(*p_error == 0)
+    {
+        show(p1);
+    }
+    else
+    {
+        printf("Incorrect input");
+        return *p_error;
+    }
+
+
+
+    return 0;
+}
+
+struct student_t* read(struct student_t* p, int *err_code) {
+    if (p == NULL) {
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+
+    int t1 = 0, t2 = 0, t3 = 0;
+    char *pp, *ppp;
+    char c;
+    t1 = scanf("%19[a-zA-Z ]%c", p->name,&c);
+    pp = p->name;
+    //   if(*(pp-1+strlen(p->name))!=','){
+    //     if(err_code!=NULL) {
+    //        *err_code = 1;
+    //    }
+    //    c = 1;
+    //}else{
+    *(pp + strlen(p->name)) = '\0';
+    //}
+    if(c!=',')
+    {
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    if(t1>0)
+        t1--;
+
+    ppp = p->surname;
+    t2 = scanf(" %39[a-zA-Z ]%c", p->surname, &c);
+    if(c!=',')
+    {
+        if (err_code != NULL)
+            *err_code = 2;
+        return NULL;
+    }
+
+    if(t2>0)
+        t2--;
+
+    t3 = scanf("%d", &p->index);
+
+    *(ppp + strlen(p->surname)) = '\0';
+
+    if (t1 == 1 && t2 == 1 && t3 == 1) {
+        if (err_code != NULL)
+            *err_code=0;
+        return p;
+    }
+
+    if (t1 == 1 && t2 == 0 && t3 == 0) {
+        if (err_code != NULL)
+            *err_code = 2;
+        return NULL;
+    } else if (t1 == 1 && t2 == 1 && t3 == 0) {
+        if (err_code != NULL)
+            *err_code = 3;
+        return NULL;
+    } else {
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+
+
+}
+void show(const struct student_t* p)
+{
+    if(p != NULL)
+    {
+        printf("%s %s, %d", (*p).name, (*p).surname, (*p).index);
+    }
+}

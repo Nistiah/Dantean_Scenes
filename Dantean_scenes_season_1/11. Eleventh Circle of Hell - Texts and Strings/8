@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+
+char* change_letter_size(char* dest, const char* src);
+
+
+int main(void) {
+    char tab[1001];
+    char tab2[1001];
+
+    printf("Podaj tekst :");
+
+    scanf("%1000[^\n]s", tab);
+
+    change_letter_size(tab2, tab);
+    printf("%s", tab2);
+
+    return 0;
+}
+char* change_letter_size(char* dest, const char* src) {
+    if (dest == NULL || src == NULL)
+        return NULL;
+    char*x, *y;
+    x=dest;
+    y=dest;
+    char text = *src;
+    while (text != '\0') {
+
+        if (text >= 'a' && text <= 'z') {
+            text -= 32;
+            //x++;
+        }else if (text >= 'A' && text <= 'Z') {
+            text += 32;
+           // x++;
+        }
+     /*   if(text < 'A' ||( text > 'Z'&&text < 'a' )|| text > 'z')
+        {
+            *dest='\0';
+            break;
+        }*/
+     x++;
+        *dest=text;
+        src++;
+        text = *src;
+        dest++;
+    }
+    //x++;
+    *x='\0';
+    return y;
+
+}
+
+
+
+
+

@@ -1,0 +1,150 @@
+#include <stdio.h>
+
+
+
+
+char* remove_non_letters(char* text);
+int trim(char* text);
+
+
+int message_compression(char* txt);
+
+int main(void) {
+    char tab[1000];
+    char *t;
+    int z=0;
+    t=tab;
+    printf("tekst zachety");
+    scanf("%1000[^\n]s", tab);
+    message_compression(tab);
+
+    while(*t!='\0'){
+        if((*t>='A'&&*t<='Z')||(*t>='a'&&*t<='z')||*t==' ')
+        {z++;
+            t++;}
+    }
+    if(z!=0){
+        printf("%s",tab);
+    }else
+        printf("NothingToShow");
+
+    return 0;
+}
+
+
+char* remove_non_letters(char* text){
+    char *koniecc;
+
+    if(text==NULL)
+        return NULL;
+    koniecc=text;
+
+    int i=0;
+    while(*koniecc!='\0'){
+        koniecc++;
+        i++;
+    }
+    char temp;
+    for(int j=0; j<i; j++)
+    {
+        temp=*(text+j);
+
+        if(temp<'A'||(temp>'Z'&&temp<'a')||temp>'z'){
+            *(text+j)=' ';
+        }
+
+        if(temp>='A'&&temp<='Z')
+        {
+            *(text+j)+=10;
+            *(text+j)+=10;
+            *(text+j)+=10;
+            *(text+j)+=1;
+            *(text+j)+=1;
+        }
+
+    }
+    return text;
+}
+int trim(char* text){
+
+    char *koniecc;
+    if(text==NULL)
+        return -1;
+    koniecc=text;
+    int i=0;
+    while(*koniecc!='\0'){
+        koniecc++;
+        i++;
+    }
+    int wynik=0;
+    char temp, tempp;
+
+    for(int j=0; j<i; j++)
+    {
+        if(j==0){
+            if(*(text+j)>='a'&&*(text+j)<='z')
+            {
+                *(text+j)-=10;
+                *(text+j)-=10;
+                *(text+j)-=10;
+                *(text+j)-=1;
+                *(text+j)-=1;
+            }
+        }
+        if(j<i-1) {
+
+            while (*(text+j) == ' ') {
+                for (int m = j ; m < i + 1; m++) {
+
+                    temp = *(text + m );
+                    tempp = *(text + m+1);
+                    *(text + m+1) = temp;
+                    *(text + m ) = tempp;
+                }
+                i--;
+                wynik++;
+                if(*(text+j)>='a'&&*(text+j)<='z')
+                {
+                    *(text+j)-=10;
+                    *(text+j)-=10;
+                    *(text+j)-=10;
+                    *(text+j)-=1;
+                    *(text+j)-=1;
+                }
+
+            }
+
+
+
+        }
+        if(j==(i-1)&&*(text+j) == ' ') {
+            tempp = *(text + j+1);
+            *(text + j ) = tempp;
+            wynik++;
+            if(*(text+j)>='a'&&*(text+j)<='z')
+            {
+                *(text+j)-=10;
+                *(text+j)-=10;
+                *(text+j)-=10;
+                *(text+j)-=1;
+                *(text+j)-=1;
+            }
+
+        }
+    }
+
+
+    return wynik;
+
+}
+int message_compression(char* txt)
+{
+    if(txt==NULL)
+        return -1;
+    remove_non_letters(txt);
+    int wynik = trim(txt);
+
+    return wynik;
+
+
+}

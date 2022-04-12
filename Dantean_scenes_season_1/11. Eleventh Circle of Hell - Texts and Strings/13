@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+
+int starts_with(const char* txt, const char* find)
+{
+    if(txt == NULL || find == NULL)
+    {return -1;}
+    if(strncmp(txt, find, strlen(find)) == 0)
+    {return 1;}
+    return 0;
+}
+
+int ends_with(const char* txt, const char* find)
+{
+    if(txt == NULL || find == NULL)
+    {return -1;}
+    if(strncmp(txt+strlen(txt)-strlen(find), find, strlen(find)) == 0)
+    {return 1;}
+    return 0;
+}
+
+
+int main(void) {
+    printf("Podaj tekst: \n");
+    char tab[101], tab2[101];
+    scanf("%100[^\n]s", tab);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+
+    printf("Podaj drugi tekst: \n");
+    scanf(" %100[^\n]s", tab2);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    printf("%d\n",starts_with(tab, tab2));
+    printf("%d\n",ends_with(tab, tab2));
+    return 0;
+}
+
+
+

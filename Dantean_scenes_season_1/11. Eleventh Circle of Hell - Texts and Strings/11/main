@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include "letter_changer.h"
+
+int main(void) {
+    char tab[1001];
+
+    unsigned char petlowa='x';
+    printf("tekst zachety glupia maszyno");
+    scanf("%1000[^\n]c", tab);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    printf("Jesli wielkie wcisnij: B, male: S\n");
+    int tymczasowa;
+    while(petlowa!='B'&&petlowa!='b'&&petlowa!='S'&&petlowa!='s') {
+        tymczasowa=scanf("%c", &petlowa);
+        scanf("%*[^\n]s");
+        scanf("%*c");
+
+        if(petlowa!='B'&&petlowa!='b'&&petlowa!='S'&&petlowa!='s'||tymczasowa!=1) {
+            printf("Incorrect input\n");
+            printf("Jesli wielkie wcisnij: B, male: S\n");
+        }
+    }
+    if(petlowa=='B')
+        petlowa='b';
+    if(petlowa=='S')
+        petlowa='s';
+    enum letter_changer_t ten;
+    ten=petlowa;
+
+    change_letter_size(tab,ten);
+    printf("\n%s", tab);
+
+
+
+    return 0;
+}
+

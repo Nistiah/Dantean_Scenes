@@ -1,0 +1,24 @@
+#include "bit_set.h"
+#include <stdio.h>
+
+
+int main()
+{
+    printf("Podaj  liczbe :");
+    if(scanf("%u", &uniaa.x) != 1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+
+
+    printf("%u\n", uniaa.x);
+    printf("%u %u\n",(unsigned int)uniaa.tab1.jeden, (unsigned int)uniaa.tab1.dwa);
+    printf("%d %d %d %d\n",uniaa.tab2.jeden, uniaa.tab2.dwa, uniaa.tab2.trzy, uniaa.tab2.cztery);
+    printf("%d%d%d%d%d%d%d%d ", uniaa.tablica.osiem, uniaa.tablica.siedem, uniaa.tablica.szesc, uniaa.tablica.piec, uniaa.tablica.cztery, uniaa.tablica.trzy, uniaa.tablica.dwa, uniaa.tablica.jeden);
+    printf("%d%d%d%d%d%d%d%d ", uniaa.tablica.osiem1, uniaa.tablica.siedem1, uniaa.tablica.szesc1, uniaa.tablica.piec1, uniaa.tablica.cztery1, uniaa.tablica.trzy1, uniaa.tablica.dwa1, uniaa.tablica.jeden1);
+    printf("%d%d%d%d%d%d%d%d ", uniaa.tablica.osiem2, uniaa.tablica.siedem2, uniaa.tablica.szesc2, uniaa.tablica.piec2, uniaa.tablica.cztery2, uniaa.tablica.trzy2, uniaa.tablica.dwa2, uniaa.tablica.jeden2);
+    printf("%d%d%d%d%d%d%d%d ", uniaa.tablica.osiem3, uniaa.tablica.siedem3, uniaa.tablica.szesc3, uniaa.tablica.piec3, uniaa.tablica.cztery3, uniaa.tablica.trzy3, uniaa.tablica.dwa3, uniaa.tablica.jeden3);
+
+    return 0;
+}

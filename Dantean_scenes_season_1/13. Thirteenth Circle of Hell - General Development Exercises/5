@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+void wiatraczek(int liczba, int kierunek);
+
+int main(){
+    int tab[100][2];
+    printf("podaj liczbe:");
+    int c;
+    if(scanf("%d",&c)!=1){
+        printf("Incorrect input");
+        return 1;
+    }
+    int i=0;
+    while (c!=0){
+        if(c>0){
+            tab[i][0]=c;
+            tab[i][1]=1;
+        }else if(c<0){
+            tab[i][0]=-c;
+            tab[i][1]=-1;
+        }
+        i++;
+        printf("podaj liczbe:");
+        if(scanf("%d",&c)!=1){
+            printf("Incorrect input");
+            return 1;
+        }
+    }
+    for(int j=0; j<i; j++){
+        wiatraczek(2*tab[j][0],tab[j][1]);
+        printf("\n");
+    }
+
+
+    return 0;
+}
+
+void wiatraczek(int liczba, int kierunek){
+    if(kierunek==-1) {
+        for (int i = 0; i < liczba; i++) {
+            for (int j = 0; j < liczba; j++) {
+                if (i == j) {
+                    printf("X");
+                } else if (j > i && j < liczba / 2) {
+                    printf("X");
+                } else if (i + j == liczba - 1) {
+                    printf("X");
+                } else if (j < i && j > liczba / 2 - 1) {
+                    printf("X");
+                } else if (j > i && i < liczba / 2 && j + i > liczba - 1) {
+                    printf("X");
+                } else if (j < i && i > liczba / 2 - 1 && j + i < liczba - 1) {
+                    printf("X");
+                } else {
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+    }
+        if(kierunek==1) {
+            for (int i = 0; i < liczba; i++) {
+                for (int j = 0; j < liczba; j++) {
+                    if (i == j) {
+                        printf("X");
+                    } else if (j > i && j < liczba / 2) {
+                        printf(" ");
+                    } else if (i + j == liczba - 1) {
+                        printf("X");
+                    } else if (j < i && j > liczba / 2 - 1) {
+                        printf(" ");
+                    } else if (j > i && i < liczba / 2 && j + i > liczba - 1) {
+                        printf(" ");
+                    } else if (j < i && i > liczba / 2 - 1 && j + i < liczba - 1) {
+                        printf(" ");
+                    } else {
+                        printf("X");
+                    }
+                }
+                printf("\n");
+            }
+
+        }
+}

@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+int connect(const char* t1, const char* t2, const char* t3, char* t4, int size);
+
+
+int main(void) {
+    char tab[1001], tab2[1001], tab3[1001], tab4[3004];
+    char *t, *t2, *t3, *t4;
+    t=tab, t2=tab2, t3=tab3, t4=tab4;
+    printf("tekst zachety glupia maszyno");
+    scanf("%1000[^\n]c", tab);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    printf("tekst zachety glupia maszyno");
+    scanf("%1000[^\n]c", tab2);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    printf("tekst zachety glupia maszyno");
+    scanf("%1000[^\n]c", tab3);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    connect(t,t2,t3,t4,3003);
+
+    printf("%s",tab4);
+
+    return 0;
+}
+
+
+int connect(const char* t1, const char* t2, const char* t3, char* t4, int size){
+
+    if(t1==NULL||t2==NULL||t3==NULL||t4==NULL||size<3)
+        return 1;
+    int pom=0;
+    if(pom==size)
+    {return 1;}
+    while(*t1!='\0'){
+      *t4=*t1;
+      t4++;
+      t1++;
+      pom++;
+        if(pom==size)
+        {return 1;}
+    }
+    *t4=' ';
+    t4++;
+    pom++;
+    if(pom==size)
+    {return 1;}
+    while(*t2!='\0'){
+        *t4=*t2;
+        t4++;
+        t2++;
+        pom++;
+        if(pom==size)
+        {return 1;}
+    }
+    *t4=' ';
+    t4++;
+    pom++;
+    if(pom==size)
+    {return 1;}
+    while(*t3!='\0'){
+        *t4=*t3;
+        t4++;
+        t3++;
+        pom++;
+        if(pom==size)
+        {return 1;}
+    }
+    *t4='\0';
+    return 0;
+}
+

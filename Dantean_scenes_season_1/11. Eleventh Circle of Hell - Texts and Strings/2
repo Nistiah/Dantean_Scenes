@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<string.h>
+
+char * my_strpbrk ( const char *, const char * );
+
+
+
+
+int main(void) {
+    printf("Podaj tekst: \n");
+    char tab[1001], tab2[]="AEIOUYaeiouy";
+    scanf("%1000[^\n]s", tab);
+    scanf("%*[^\n]s");
+    scanf("%*c");
+    char * pch, *pchch;
+    pchch=tab2;
+    pch=my_strpbrk(tab, tab2);
+    int i=0;
+    while (pch != NULL) {
+        while (*pchch != '\0') {
+        if (*pch == *pchch) {
+            i++;
+        }
+
+        pchch++;
+    }
+        pchch=tab2;
+        pch = my_strpbrk (pch+1,tab2);
+    }
+    printf("%d", i);
+    return 0;
+}
+
+char * my_strpbrk( const char * tx, const char * txt) {
+    if (tx == NULL || txt == NULL) return NULL;
+    for (;  *tx  ; tx++) {
+        char * tempS1 = (char*)tx;
+        char * tempS2 = (char*)txt;
+
+        while(*tempS2) {
+            if (*tempS1 == *tempS2) {
+                return tempS1;
+            }
+            tempS2++;
+        }
+    }
+    return NULL;
+}
+

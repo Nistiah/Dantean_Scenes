@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <math.h>
+
+struct date_t {
+    int day;
+    int month;
+    int year;
+};
+
+struct date_t* set_date(struct date_t* d, int day, int month, int year, int *err_code);
+void show(const struct date_t* d);
+struct date_t* read(struct date_t* d, int *err_code);
+int validate(const struct date_t* d);
+
+int main(){
+    struct date_t t;
+    int err_code;
+    if(read(&t, &err_code)==NULL){
+        if(err_code==2){
+            printf("Incorrect input");
+            return 1;
+        }
+
+        printf("Incorrect");
+        return 0;
+    }
+
+    show(&t);
+    printf("Correct");
+    return 0;
+
+}
+struct date_t* set_date(struct date_t* d, int day, int month, int year, int *err_code){
+    if (d == NULL) {
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    d->day=day;
+    d->month=month;
+    d->year=year;
+
+    if(err_code !=NULL)
+        *err_code = 0;
+    return d;
+}
+void show(const struct date_t* d){
+    if (d != NULL) {
+        if(d->year>999) {
+            if (d->day > 9 && d->month > 9)
+                printf("Given date: %d-%d-%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month > 9)
+                printf("Given date: 0%d-%d-%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month <= 9)
+                printf("Given date: 0%d-0%d-%d\n", d->day, d->month, d->year);
+            if (d->day > 9 && d->month <= 9)
+                printf("Given date: %d-0%d-%d\n", d->day, d->month, d->year);
+        }else if(d->year<999&&d->year>99){
+            if (d->day > 9 && d->month > 9)
+                printf("Given date: %d-%d-0%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month > 9)
+                printf("Given date: 0%d-%d-0%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month <= 9)
+                printf("Given date: 0%d-0%d-0%d\n", d->day, d->month, d->year);
+            if (d->day > 9 && d->month <= 9)
+                printf("Given date: %d-0%d-0%d\n", d->day, d->month, d->year);
+        }else if(d->year<99&&d->year>9){
+            if (d->day > 9 && d->month > 9)
+                printf("Given date: %d-%d-00%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month > 9)
+                printf("Given date: 0%d-%d-00%d\n", d->day, d->month, d->year);
+            if (d->day <= 9 && d->month <= 9)
+                printf("Given date: 0%d-0%d-00%d\n", d->day, d->month, d->year);
+            if (d->day > 9 && d->month <= 9)
+                printf("Given date: %d-0%d-00%d\n", d->day, d->month, d->year);
+        }
+    }
+}
+struct date_t* read(struct date_t* d, int *err_code){
+    if (d == NULL) {
+        if(err_code !=NULL)
+            *err_code=1;
+        return NULL;
+    }
+    printf("Enter a date (formatted as dd-mm-yyyy):");
+    int rok, miesiac, dzien;
+    if(scanf("%d-%d-%d",&dzien, &miesiac, &rok)!=3){
+        if(err_code !=NULL)
+            *err_code=2;
+        return NULL;
+    }
+    struct date_t c;
+    c.day=dzien;
+    c.month=miesiac;
+    c.year=rok;
+    if(validate(&c)!=1){
+        if(err_code !=NULL)
+            *err_code=1;
+        return NULL;
+    }
+    d->day=dzien;
+    d->month=miesiac;
+    d->year=rok;
+    if(err_code !=NULL)
+        *err_code=0;
+    return d;
+
+}
+int validate(const struct date_t* d){
+    if (d == NULL) {
+        return -1;
+    }
+    int year, month, day;
+    year=d->year;
+    month=d->month;
+    day=d->day;
+
+    if((year%4==0&&year%100!=0)||year%400==0){
+        if(month<1||month>12){
+            return 0;
+        }else{
+            if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+                if(day<1||day>31){
+                    return 0;
+                }
+            }else if(month==2){
+                if(day<1||day>29){
+                    return 0;
+                }
+            }else{
+                if(day<1||day>30){
+                    return 0;
+                }
+            }
+        }
+    }else{
+        if(month<1||month>12){
+            return 0;
+        }else{
+            if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+                if(day<1||day>31){
+                    return 0;
+                }
+            }else if(month==2){
+                if(day<1||day>28){
+                    return 0;
+                }
+            }else{
+                if(day<1||day>30){
+                    return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}

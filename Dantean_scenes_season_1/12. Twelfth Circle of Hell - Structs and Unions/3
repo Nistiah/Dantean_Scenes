@@ -1,0 +1,360 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+struct student_t {
+    char name[20];
+    char surname[40];
+    int index;
+    char field[50];
+    char faculty[80];
+    int year;
+};
+struct student_t* set(struct student_t* student, const char * name, const char * surname, int index, const char * field, const char * faculty, int year, int *err_code);
+
+struct student_t* read(struct student_t* p, int *err_code);
+void display(const struct student_t* p);
+void display_name(const struct student_t* student);
+void display_surname(const struct student_t* student);
+void display_index(const struct student_t* student);
+void display_field(const struct student_t* student);
+void display_faculty(const struct student_t* student);
+void display_year(const struct student_t* student);
+
+int main() {
+    printf("Podaj dane:");
+    struct student_t a, *p1;
+    struct student_t b, *p2;
+    strcpy(b.name, "Laura");
+    strcpy(b.surname, "Szarzyska");
+    b.index=235987;
+    strcpy(b.field, "informatyka");
+    strcpy(b.faculty, "weeia");
+    b.year=2020;
+    p2=&b;
+    p1 = &a;
+    int error = 0;
+    int *p_error;
+    p_error = &error;
+    read(p1, p_error);
+    if(*p_error == 0)
+    {
+        display(p1);
+        display(p2);
+        display_name(p1);
+        display_surname(p1);
+        display_index(p1);
+        display_field(p1);
+        display_faculty(p1);
+        display_year(p1);
+    }
+    else
+    {
+        printf("Incorrect input\n");
+        display(p2);
+        return *p_error;
+    }
+    return 0;
+}
+
+struct student_t* read(struct student_t* p, int *err_code) {
+    if (p == NULL) {
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    char tab[202];
+    int i=0, j=1, k=0, ii=0;
+    fgets(tab, 201, stdin);
+    int p1=0,p2=0,p3=0,p4=0,p5=0,z=0, zz=0;
+    while(*(tab+zz)!='\0'){
+        if(*(tab+zz)==','){
+            switch (z){
+                case 0:
+                    p1=zz;
+                case 1:
+                    p2=zz;
+                case 2:
+                    p3=zz;
+                case 3:
+                    p4=zz;
+                case 4:
+                    p5=zz;
+            }
+            z++;
+        }
+        zz++;
+    }
+    if(p1>21){
+        if (err_code != NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    if(p2-p1>41){
+        if (err_code != NULL)
+            *err_code = 2;
+        return NULL;
+    }
+    if(p3-p2>8){
+        if (err_code != NULL)
+            *err_code = 3;
+        return NULL;
+    }
+    if(p4-p3>51){
+        if (err_code != NULL)
+            *err_code = 4;
+        return NULL;
+    }
+    if(p5-p4>81){
+        if (err_code != NULL)
+            *err_code = 5;
+        return NULL;
+    }
+
+    while (*(tab + i) != ',') {
+        if(*(tab+i)=='\n') {
+            if (err_code != NULL)
+                *err_code = j;
+            return NULL;
+        }
+
+            *(p->name + i) = *(tab + i);
+            i++;
+            k++;
+        }
+
+    *(p->name + i)='\0';
+        j=2;
+        i++;
+    if(*(tab+i)=='\n'){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+    while(*(tab+i)==' ')
+        i++;
+    if(*(tab + i) == ',')
+    {
+        if (err_code != NULL)
+            *err_code = j;
+        return NULL;
+    }
+    while (*(tab + i) != ',') {
+        if(*(tab+i)=='\n') {
+            if (err_code != NULL)
+                *err_code = j;
+            return NULL;
+        }
+            *(p->surname + ii) = *(tab + i);
+            i++;
+            ii++;
+        }
+
+    *(p->surname + ii)='\0';
+    ii=0;
+        j=3;
+        i++;
+    if(*(tab+i)=='\n'){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+    while(*(tab+i)==' ')
+        i++;
+    if(*(tab + i) == ',')
+    {
+        if (err_code != NULL)
+            *err_code = j;
+        return NULL;
+    }
+    p->index = 0;
+        while (*(tab + i) != ',') {
+            if(*(tab+i)=='\n') {
+                if (err_code != NULL)
+                    *err_code = j;
+                return NULL;
+            }
+            if((int)*(tab+i)-48<0||(int)*(tab+i)-48>9)
+            {
+                if (err_code != NULL)
+                    *err_code=j;
+                return NULL;
+            }
+            p->index *= 10;
+            p->index += (int)*(tab + i)-48;
+            i++;
+        }
+        j=4;
+        i++;
+
+    if(*(tab+i)=='\n'){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+    while(*(tab+i)==' ')
+        i++;
+    if(*(tab + i) == ',')
+    {
+        if (err_code != NULL)
+            *err_code = j;
+        return NULL;
+    }
+    while (*(tab + i) != ',') {
+            if(*(tab+i)=='\n') {
+                if (err_code != NULL)
+                    *err_code = j;
+                return NULL;
+            }
+            *(p->field + ii) = *(tab + i);
+            i++;
+            ii++;
+        }
+
+    *(p->field + ii)='\0';
+    ii=0;
+    j=5;
+    i++;
+    if(*(tab+i)=='\n'){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+    while(*(tab+i)==' ')
+        i++;
+    if(*(tab + i) == ',')
+    {
+        if (err_code != NULL)
+            *err_code = j;
+        return NULL;
+    }
+    while (*(tab + i) != ',') {
+        if(*(tab+i)=='\n') {
+            if (err_code != NULL)
+                *err_code = j;
+            return NULL;
+        }
+            *(p->faculty + ii) = *(tab + i);
+            i++;
+            ii++;
+        }
+    *(p->faculty + ii)='\0';
+        j=6;
+        i++;
+    if(*(tab+i)=='\n'){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+    while(*(tab+i)==' ')
+        i++;
+    if(*(tab + i) == ',')
+    {
+        if (err_code != NULL)
+            *err_code = j;
+        return NULL;
+    }
+    p->year = 0;
+        while (*(tab + i) != '\n') {
+            p->year *= 10;
+            if((int)*(tab+i)-48<0||(int)*(tab+i)-48>9)
+            {
+                if (err_code != NULL)
+                    *err_code=j;
+                return NULL;
+            }
+            p->year += (int) *(tab + i)-48;
+            i++;
+        }
+    if(p->year==0){
+        if (err_code != NULL)
+            *err_code=j;
+        return NULL;
+    }
+
+    if (err_code != NULL)
+        *err_code=0;
+    return p;
+}
+struct student_t* set(struct student_t* student, const char * name, const char * surname, int index, const char * field, const char * faculty, int year, int *err_code)
+{
+    if(student!=NULL&&name!=NULL&&surname!=NULL&&field!=NULL&&faculty!=NULL)
+    {
+        if( strlen(name)<20&&strlen(surname)<40&&strlen(field)<50&&strlen(faculty)<80) {
+            strcpy(student->name, name);
+            strcpy(student->surname, surname);
+            strcpy(student->field, field);
+            strcpy(student->faculty, faculty);
+            student->index = index;
+            student->year = year;
+            if (err_code != NULL)
+                *err_code = 0;
+            return student;
+
+        }
+    }
+    if (err_code != NULL)
+        *err_code=1;
+    return NULL;
+}
+void display(const struct student_t* p){
+    char c;
+    if(p != NULL)
+        c = *(p->field);
+    if(p != NULL) {
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y' || c == 'A' || c == 'E' || c == 'I' ||
+            c == 'O' || c == 'U' || c == 'Y') {
+
+            printf("%s %s, index number: %d, was an %s student at the %s in %d.\n", (*p).name, (*p).surname,
+                   (*p).index, (*p).field, (*p).faculty, (*p).year);
+
+        } else {
+
+            printf("%s %s, index number: %d, was a %s student at the %s in %d.\n", (*p).name, (*p).surname,
+                   (*p).index,
+                   (*p).field, (*p).faculty, (*p).year);
+
+        }
+    }
+}
+void display_name(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Student name: %s\n",(*student).name);
+    }
+}
+
+void display_surname(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Student surname: %s\n",(*student).surname);
+    }
+}
+
+void display_index(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Index: %d\n",(*student).index);
+    }
+}
+
+void display_field(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Field: %s\n",(*student).field);
+    }
+}
+
+void display_faculty(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Faculty: %s\n",(*student).faculty);
+    }
+}
+
+void display_year(const struct student_t* student){
+    if(student!=NULL)
+    {
+        printf("Year: %d\n",(*student).year);
+    }
+}

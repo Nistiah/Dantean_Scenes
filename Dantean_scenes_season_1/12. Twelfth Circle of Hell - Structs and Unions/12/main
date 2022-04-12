@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include "bit_set.h"
+
+
+int main()
+{
+    printf("Podaj  liczbe :");
+    unsigned int n = 0;
+
+    if(scanf("%d", &uniaa.x) != 1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    n=(uniaa.struktura.bit1+uniaa.struktura.bit2+uniaa.struktura.bit3+uniaa.struktura.bit4+uniaa.struktura.bit5+uniaa.struktura.bit6+uniaa.struktura.bit7+uniaa.struktura.bit8+uniaa.struktura.bit9+uniaa.struktura.bit10+uniaa.struktura.bit11+uniaa.struktura.bit12+uniaa.struktura.bit13+uniaa.struktura.bit14+uniaa.struktura.bit15+uniaa.struktura.bit16+uniaa.struktura.bit17+uniaa.struktura.bit18+uniaa.struktura.bit19+uniaa.struktura.bit20+uniaa.struktura.bit21+uniaa.struktura.bit22+uniaa.struktura.bit23+uniaa.struktura.bit24+uniaa.struktura.bit25+uniaa.struktura.bit26+uniaa.struktura.bit27+uniaa.struktura.bit28+uniaa.struktura.bit29+uniaa.struktura.bit30+uniaa.struktura.bit31+uniaa.struktura.bit32)%2;
+
+
+    printf("%s",(n? "NO": "YES"));
+    return 0;
+
+}

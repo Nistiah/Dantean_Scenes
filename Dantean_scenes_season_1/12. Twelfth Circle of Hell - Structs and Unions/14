@@ -1,0 +1,177 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+
+
+enum type_t{
+    INTEGER=0,
+    DOUBLE=1,
+    CHARACTER=2
+};
+
+struct data_t
+{
+    enum type_t type;
+    union {
+        int i;
+        double d;
+        char c;
+    };
+};
+double typzmiennej (struct data_t *data)
+{
+    if(data->type==CHARACTER)
+        return (double)data->c;
+    else if(data->type==DOUBLE)
+        return data->d;
+    else if(data->type==INTEGER)
+        return (double)data->i;
+    return 0;
+}
+
+int sort(struct data_t *data[], int size);
+void display(struct data_t *data[], int size);
+
+int main(){
+    struct data_t dane[100];
+    struct data_t *ptr_dane[100];
+    char tab[10000];
+    printf("Enter elements (single characters, signed integers and doubles):");
+    scanf("%1000[^\n]s",tab);
+    char *ptr=tab;
+    int rozmiar=0;
+    for(int i=0; i<10000&&(ptr+i)!=NULL; i++) {
+        if(*(ptr+i)=='\0')break;
+        if (*(ptr+i) <'0'||*(ptr+i)>'9') {
+            if (*(ptr+i) == ' ' && (*(ptr+i + 1) == ' ')) {
+                printf("Incorrect input data");
+                return 2;
+            }
+            if (*(ptr+i) == '.' && (*(ptr +i+ 1) == '.' )) {
+                printf("Incorrect input data");
+                return 2;
+            }
+            if ((*(ptr+i) == '.' && *(ptr+i-1) == ' ') && *(ptr+i+1) != ' ') {
+                printf("Incorrect input data");
+                return 2;
+            }
+            if ((*(ptr+i) =='-' && *(ptr+i-1) != ' '&&i!=0) ) {
+                printf("Incorrect input data");
+
+                return 2;
+            }
+            if ((*(ptr+i) =='.' && *(ptr+i+1) == ' '&&*(ptr+i-1) != ' '&&i>0) ) {
+                printf("Incorrect input data");
+                return 2;
+            }
+            if(((*(ptr+i-1)!=' ')&&(*(ptr+i+1)!=' ')&&(ptr+i+1)!=NULL&&*(ptr+i)!='\n'&&*(ptr+i)!='.'&&*(ptr+i)!='-'&&*(ptr+i)!=' '&&*(ptr+i)!='\0')){
+                printf("Incorrect input data");
+
+                return 2;
+            }
+            if ((*(ptr+i) =='-' && (*(ptr+i+1) < '0'||*(ptr+i+1) > '9')&&(*(ptr+i-1) != ' '&&*(ptr+i+1) != ' '&&(ptr+i+1)!=NULL&&*(ptr+i+1)!='\n')))  {
+                printf("Incorrect input data");
+
+                return 2;
+            }
+            if(*(ptr+i) =='.'&& *(ptr+i+1) =='\0'&& *(ptr+i-1) != ' '){
+                printf("Incorrect input data");
+
+                return 2;
+            }
+            if((*(ptr+i) =='.'&&*(ptr+i+1) != ' '&&i==0)){
+                printf("Incorrect input data");
+
+                return 2;
+            }
+        }
+    }
+
+
+    ptr = strtok(tab," ");
+    int j=0;
+    for(int i=0; i<1000&&ptr!=NULL; i++){
+
+        double pom;
+        sscanf(ptr, "%lf", &pom);
+        if (strlen(ptr)==1&&(((*(ptr)>='a'&&*(ptr)<='z')||(*(ptr)>='A'&&*(ptr)<='Z'))||ispunct(*(ptr))))
+        {
+            (dane+i)->type = CHARACTER;
+            sscanf(ptr, "%c", &(dane+i)->c);
+            rozmiar++;
+        }
+        else if((int)pom == pom)
+        {
+            (dane+i)->type = INTEGER;
+            (dane+i)->i = (int)pom;
+            rozmiar++;
+        }
+        else{
+            (dane+i)->type = DOUBLE;
+            (dane+i)->d = pom;
+            rozmiar++;
+        }
+        *(ptr_dane+ i) = dane+i;
+        ptr = strtok(NULL," ");
+        j++;
+        if(rozmiar==100){
+            i=999;
+        }
+
+    }
+    sort(ptr_dane,j);
+    display(ptr_dane,j);
+
+    return 0;
+}
+int sort(struct data_t *data[], int size)
+{
+    if(data==NULL)return 1;
+    if(size<1)return 1;
+
+    for (int i = 0; i < size+10; i++){
+        for (int j = 0; j < size-1; j++){
+            if (typzmiennej(*(data + j)) < typzmiennej(*(data + j+1)))
+            {
+                struct data_t *temp = *(data + j);
+                *(data + j)=*(data + j+1);
+                *(data + j+1) = temp;
+            }
+            struct data_t *temp = *(data + j);
+            struct data_t *temp2 = *(data + j+1);
+            if (typzmiennej(*(data + j)) == typzmiennej(*(data + j+1))){
+                if((temp->type==INTEGER||temp->type==DOUBLE)&&temp2->type==CHARACTER){
+                    struct data_t *temp3 = *(data + j);
+                    *(data + j)=*(data + j+1);
+                    *(data + j+1) = temp3;
+                }
+                if(temp->type==INTEGER&&temp2->type==DOUBLE){
+                    struct data_t *temp3 = *(data + j);
+                    *(data + j)=*(data + j+1);
+                    *(data + j+1) = temp3;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+void display(struct data_t *data[], int size){
+    if(data!=NULL) {
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                struct data_t *pom = *(data + i);
+                if (pom->type == INTEGER) {
+                    printf("%d ", pom->i);
+                }else if(pom->type == CHARACTER) {
+                    printf("%c ", pom->c);
+                }else if(pom->type == DOUBLE) {
+                    printf("%lf ", pom->d);
+                }
+            }
+        }
+    }
+}

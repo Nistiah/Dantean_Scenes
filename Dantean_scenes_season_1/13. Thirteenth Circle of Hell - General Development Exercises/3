@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <math.h>
+
+
+long int dlugosc(long long int liczba){
+    if(liczba<0){
+        liczba=-1*liczba;
+    }
+    if(liczba<10){return 1;}
+    else{return 1+dlugosc(liczba/10);}
+
+}
+
+int main(){
+long long int liczba1, liczba2;
+printf("Podaj liczbe:");
+if(scanf("%lld",&liczba1)!=1){
+    printf("Incorrect input");
+    return 1;
+}
+printf("Podaj liczbe:");
+if(scanf("%lld",&liczba2)!=1){
+    printf("Incorrect input");
+    return 1;
+}
+for (int i=0; i<dlugosc(liczba1*liczba2)-dlugosc(liczba1); i++){
+    printf(" ");
+}
+printf("%lld\n",liczba1);
+    for (int i=0; i<dlugosc(liczba1*liczba2)-dlugosc(liczba2); i++){
+        printf(" ");
+    }
+    printf("%lld\n",liczba2);
+    for (int i=0; i<dlugosc(liczba1*liczba2); i++){
+        printf("-");
+    }
+    printf("\n");
+    int c=1;
+    for (int i=dlugosc(liczba2); i>0; i--){
+
+        if((liczba2/(int)pow(10,dlugosc(liczba2)-i)) % 10!=0) {
+            for (int j = dlugosc(liczba2)-(dlugosc(liczba2)-i); j > 2; j--) {
+                printf(" ");
+                c++;
+            }
+            if (i - dlugosc(liczba2) == 0) {
+                //printf(" ");
+                //printf("%d", liczba2 % 10 * liczba1);
+                if(c+dlugosc(liczba2 % 10 * liczba1)==dlugosc(liczba1*liczba2))
+                {
+
+                    printf(" ");
+                    printf("%lld", liczba2 % 10 * liczba1);
+                }
+                else{
+                    for(int w=0; w<=dlugosc(liczba1*liczba2)-(c+dlugosc(liczba2 / (int) pow(10, dlugosc(liczba2) - i) % 10 * liczba1)+(dlugosc(liczba2)-i));w++){
+                        printf(" ");
+                    }
+                    printf("%lld", (liczba2 / (int) pow(10, dlugosc(liczba2) - i)) % 10 * liczba1);
+                }
+
+            }else {
+                if(c+dlugosc(liczba2 / (int) pow(10, dlugosc(liczba2) - i) % 10 * liczba1)+(dlugosc(liczba2)-i)==dlugosc(liczba1*liczba2))
+                {
+                    printf(" ");
+                    printf("%lld", (liczba2 / (int) pow(10, dlugosc(liczba2) - i)) % 10 * liczba1);
+                }
+                else{
+                    for(int w=0; w<=dlugosc(liczba1*liczba2)-(c+dlugosc(liczba2 / (int) pow(10, dlugosc(liczba2) - i) % 10 * liczba1)+(dlugosc(liczba2)-i));w++){
+                        printf(" ");
+                    }
+                    //if(i==1){
+                    //    int ww=dlugosc(liczba2 / (int) pow(10, dlugosc(liczba2) - i) % 10 * liczba1);
+                     //   for(int w=0; w<dlugosc(liczba1)-ww; w++){
+                    //        printf(" ");
+                    //    }
+                    //}
+                    printf("%lld", (liczba2 / (int) pow(10, dlugosc(liczba2) - i)) % 10 * liczba1);
+                }
+            }
+        }
+        if((liczba2/(int)pow(10,dlugosc(liczba2)-i)) % 10==0){
+            for(int w=0; w<=dlugosc(liczba1*liczba2)-(c+dlugosc(liczba2 / (int) pow(10, dlugosc(liczba2) - i) % 10 * liczba1)+(dlugosc(liczba2)-i));w++){
+                printf(" ");
+            }
+            printf("0");
+        }
+        c=1;
+        printf("\n");
+    }
+    for (int i=0; i<dlugosc(liczba1*liczba2); i++){
+        printf("-");
+    }
+    printf("\n");
+    printf("%lld",liczba1*liczba2);
+
+
+
+    return 0;
+}

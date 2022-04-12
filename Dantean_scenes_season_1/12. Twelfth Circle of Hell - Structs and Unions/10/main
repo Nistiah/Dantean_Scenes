@@ -1,0 +1,14 @@
+#include "bit_set.h"
+#include <stdio.h>
+
+int main()
+{
+    printf("Podaj liczbe:");
+    if(scanf("%hhd", &uniaa.x) != 1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("%d %d %d %d %d %d %d %d", uniaa.tablica.osiem, uniaa.tablica.siedem, uniaa.tablica.szesc, uniaa.tablica.piec, uniaa.tablica.cztery, uniaa.tablica.trzy, uniaa.tablica.dwa, uniaa.tablica.jeden);
+    return 0;
+}

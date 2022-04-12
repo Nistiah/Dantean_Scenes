@@ -1,0 +1,178 @@
+#include <stdio.h>
+
+char* reverse(char* text);
+char* remove_non_letters(char* text);
+char* trim(char* text);
+char* swap_order_words(char* txt);
+
+
+
+int main(void) {
+    char tab[1000];
+    char *x,*t;
+    int z=0;
+    t=tab;
+    printf("tekst zachety glupia maszyno");
+    scanf("%1000[^\n]s", tab);
+    x=swap_order_words(t);
+
+    while(*t!='\0'){
+        if((*t>='A'&&*t<='Z')||(*t>='a'&&*t<='z')||*t==' ')
+        {z++;
+            t++;}
+    }
+    if(z!=0){
+        printf("%s",x);
+    }else
+        printf("show to Nothing");
+
+    return 0;
+}
+
+char* reverse(char* text){
+
+    char *koniec;
+    koniec=text;
+    if(text==NULL)
+        return NULL;
+    int i=0, ii;
+    while(*koniec!='\0'){
+        koniec++;
+        i++;
+    }
+    ii=i;
+    char temp;
+    for(int j=0; j<i; j++)
+    {
+        temp=*(text+j);
+        *(text+j)=*(text+i-1);
+        *(text+i-1)=temp;
+        i--;
+    }
+    i=ii;
+    for(int j=1; j<i; j++)
+    {
+        if(*(text+j)=='\\'&&(*(text+j)=='n'||*(text+j)=='\'')) {
+            temp = *(text + j);
+            *(text + j) = *(text + j - 1);
+            *(text + j - 1) = temp;
+        }
+    }
+
+
+    return text;
+
+}
+char* remove_non_letters(char* text){
+    char *koniec2;
+    if(text==NULL)
+        return NULL;
+    koniec2=text;
+
+    int i=0;
+    while(*koniec2!='\0'){
+        koniec2++;
+        i++;
+    }
+    char temp3;
+    for(int j=0; j<i; j++)
+    {
+        temp3=*(text+j);
+
+        if(temp3<'A'||(temp3>'Z'&&temp3<'a')||temp3>'z'){
+            *(text+j)=' ';
+        }
+
+    }
+    return text;
+}
+char* trim(char* text){
+    char *koniec2;
+    if(text==NULL)
+        return NULL;
+    koniec2=text;
+    int i=0;
+    while(*koniec2!='\0'){
+        koniec2++;
+        i++;
+    }
+    char temp, temp2;
+    for(int j=0; j<i; j++)
+    {
+        if(j<i-1) {
+            while (*(text+j) == ' '&&*(text+j+1)==' ') {
+                for (int m = j + 1; m < i + 1; m++) {
+
+                    temp = *(text + m );
+                    temp2 = *(text + m+1);
+                    *(text + m+1) = temp;
+                    *(text + m ) = temp2;
+                }
+                i--;
+            }
+            if(j==0&&*(text+j) == ' '){
+                for (int m = j ; m < i + 1; m++) {
+
+                    temp = *(text + m );
+                    temp2 = *(text + m+1);
+                    *(text + m+1) = temp;
+                    *(text + m ) = temp2;
+                }
+                i--;
+            }
+
+        }
+        if(j==(i-1)&&*(text+j) == ' ') {
+            temp2 = *(text + j+1);
+            *(text + j ) = temp2;
+
+        }
+    }
+    return text;
+
+}
+char* swap_order_words(char* txt){
+    if(txt==NULL)
+        return NULL;
+    reverse(txt);
+    remove_non_letters(txt);
+    trim(txt);
+    char *temp, *poczatek, tempp;
+    temp=txt;
+    poczatek=txt;
+    int pom=0;
+    //printf("%s\n", txt);
+    while(*temp!='\0')
+    {
+        if(*temp==' ')
+        {
+            for(int j=0; j<pom; j++)
+            {
+                tempp=*(poczatek+j);
+                *(poczatek+j)=*(poczatek+pom-1);
+                *(poczatek+pom-1)=tempp;
+                pom--;
+            }
+            poczatek=temp;
+            poczatek=poczatek+1;
+            pom=-1;
+        }
+        pom++;
+        temp++;
+    }
+
+
+
+    temp--;
+
+
+    for(int j=0; j<pom-1; j++)
+    {
+        tempp=*(temp-j);
+        *(temp-j)=*(poczatek+j);
+        *(poczatek+j)=tempp;
+        pom--;
+    }
+
+    return txt;
+}

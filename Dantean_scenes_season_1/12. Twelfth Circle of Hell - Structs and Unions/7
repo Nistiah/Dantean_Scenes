@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include <math.h>
+
+
+struct complex_t {
+    float re;
+    float im;
+};
+
+struct complex_t* set(struct complex_t* cp, float re, float im, int *err_code);
+void show(const struct complex_t* cp);
+int read(struct complex_t* cp);
+int add(const struct complex_t *first, const struct complex_t *second,struct complex_t* result);
+int subtract(const struct complex_t *first, const struct complex_t *second,struct complex_t* result);
+int multiply(const struct complex_t *first, const struct complex_t *second, struct complex_t* result);
+int divide(const struct complex_t *first, const struct complex_t *second,struct complex_t* result);
+float complex_abs(struct complex_t* cp, int * err_code);
+
+int main(){
+    struct complex_t cp, cp2;
+    if(read(&cp)!=0){
+        return 1;
+    }
+    if(read(&cp2)!=0){
+        return 1;
+    }
+    struct complex_t dodawanie, odejmowanie, mnozenie, dzielenie;
+    add(&cp,&cp2,&dodawanie);
+    subtract(&cp,&cp2, &odejmowanie);
+    multiply(&cp,&cp2, &mnozenie);
+    divide(&cp,&cp2, &dzielenie);
+    show(&dodawanie);
+    show(&odejmowanie);
+    show(&mnozenie);
+    if(divide(&cp,&cp2, &dzielenie)==0){
+        show(&dzielenie);
+    }else{
+        printf("Operation not permitted");
+    }
+
+    return 0;
+
+}
+struct complex_t* set(struct complex_t* cp, float re, float im, int *err_code) {
+    if (cp == NULL) {
+        if(err_code !=NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    cp->re = re;
+    cp->im = im;
+    if(err_code !=NULL)
+        *err_code = 0;
+    return cp;
+
+}
+void show(const struct complex_t* cp){
+    if(cp!=NULL){
+        if(cp->im<=0){
+            printf("%f - i%f\n", cp->re, fabs((double)cp->im));
+        }else if((cp->im>0)){
+            printf("%f + i%f\n", cp->re, cp->im);
+        }
+    }
+}
+
+int read(struct complex_t* cp){
+    if(cp==NULL){
+        return 1;
+    }
+    float re, im;
+    char znak1, znak2;
+    int err_code;
+
+    printf("Enter value:");
+    if(scanf("%f%c%c%f",&re, &znak1, &znak2, &im)!=4){
+        printf("incorrect input");
+        return 2;
+    }
+    if(znak1!='-'&&znak1!='+'){
+        printf("incorrect input");
+        return 2;
+    }
+    if(znak2!='i'||im<0){
+        printf("incorrect input");
+        return 2;
+    }
+    if(znak1=='-'){
+        im*=-1;
+    }
+    if(set(cp,re,im, &err_code)==NULL){
+        printf("incorrect input");
+        return 1;
+    }
+    return 0;
+
+}
+int add(const struct complex_t *first, const struct complex_t *second,struct complex_t* result){
+    if(first==NULL||second==NULL||result==NULL){
+        return 1;
+    }
+    result->re=first->re+second->re;
+    result->im=first->im+second->im;
+    return 0;
+}
+int subtract(const struct complex_t *first, const struct complex_t *second,struct complex_t* result){
+    if(first==NULL||second==NULL||result==NULL){
+        return 1;
+    }
+    result->re=first->re-second->re;
+    result->im=first->im-second->im;
+    return 0;
+}
+int multiply(const struct complex_t *first, const struct complex_t *second, struct complex_t* result){
+    if(first==NULL||second==NULL||result==NULL){
+        return 1;
+    }
+    result->re=first->re*second->re-(first->im*second->im);
+    result->im=first->re*second->im+(first->im*second->re);
+    return 0;
+}
+int divide(const struct complex_t *first, const struct complex_t *second,struct complex_t* result){
+    if(first==NULL||second==NULL||result==NULL){
+        return 1;
+    }
+    if(second->re==0&&second->im==0){
+
+        return 2;
+    }
+    result->re=(first->re*second->re+first->im*second->im)/(second->re*second->re+second->im*second->im);
+    result->im=(first->im*second->re-first->re*second->im)/(second->re*second->re+second->im*second->im);
+    return 0;
+
+}
+float complex_abs(struct complex_t* cp, int * err_code){
+    if(cp==NULL){
+        if(err_code !=NULL)
+            *err_code=1;
+        return -1;
+    }
+    float x=cp->re; float y=cp->im;
+    x*=x;
+    y*=y;
+    if(x<0){x*=-1;}
+    if(y<0){y*=-1;}
+    double modul=x+y;
+    if (modul<0){modul*=-1;}
+    modul=sqrt(modul);
+    if(err_code !=NULL)
+        *err_code=0;
+    return (float)modul;
+}

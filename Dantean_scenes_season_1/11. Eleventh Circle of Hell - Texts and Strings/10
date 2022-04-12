@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+char* space_changer(char*);
+
+int main(void) {
+    char tab[1001];
+
+    printf("Podaj tekst :");
+
+    scanf("%1000[^\n]s", tab);
+    space_changer(tab);
+    printf("%s", tab);
+
+    return 0;
+}
+char* space_changer(char* text){
+    char *koniec;
+    if(text==NULL)
+        return NULL;
+    koniec=text;
+
+    int i=0;
+    while(*koniec!='\0'){
+        koniec++;
+        i++;
+    }
+    char tempp;
+    for(int j=0; j<i; j++)
+    {
+        tempp=*(text+j);
+
+        if(tempp==' '){
+            *(text+j)='_';
+        }
+    }
+    return text;
+}
+
+
+
+
+

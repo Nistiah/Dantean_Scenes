@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+struct point_t {
+    int x;
+    int y;
+};
+struct point_t* set(struct point_t* p, int x, int y);
+void show(const struct point_t* p);
+struct point_t* read(struct point_t* p);
+float distance(const struct point_t* p1, const struct point_t* p2, int *err_code);
+
+
+int main(){
+    time_t  timee=time(NULL);
+    int randd=time(&timee);
+    struct point_t xy;
+
+    struct point_t xy2;
+    srand(randd);//+(int)&xy2
+    xy2.x=rand()%20-10;
+    xy2.y=rand()%20-10;
+    if(read(&xy)==NULL){
+        printf("incorrect input");
+        return 1;
+    }
+    show(&xy);
+    printf("\n");
+    show(&xy2);
+    printf("\n");
+    int err_code;
+    float temp = distance(&xy, &xy2, &err_code);
+    if(err_code==0&&temp!=-1){
+        printf("%.2f", temp);
+        return 0;
+    }
+    return 1;
+}
+struct point_t* set(struct point_t* p, int x, int y){
+    if(p!=NULL){
+        p->x=x;
+        p->y=y;
+        return p;
+    }
+    return NULL;
+}void show(const struct point_t* p)
+{
+    if(p != NULL)
+    {
+        printf("x = %d; y = %d", (*p).x, (*p).y);
+    }
+}
+struct point_t* read(struct point_t* p){
+    if (p == NULL) {
+        return NULL;
+    }
+    int t1 = 0, t2 = 0;
+    printf("Podaj x:");
+    t1 = scanf("%d", &p->x);
+    if(t1!=1)
+        return NULL;
+    printf("Podaj y:");
+    t2 = scanf("%d", &p->y);
+    if(t1!=1||t2!=1)
+    {
+        return NULL;
+    }
+    return p;
+}
+float distance(const struct point_t* p1, const struct point_t* p2, int *err_code){
+    if(p1==NULL||p2==NULL)
+    {
+        if(err_code!=NULL)
+        {*err_code=1;}
+        return -1;
+    }
+    float x, y;
+    x=(float)(p1->x-p2->x);
+    y=(float)(p1->y-p2->y);
+    if(x<0){x*=-1;}
+    if(y<0){y*=-1;}
+    x*=x;
+    y*=y;
+    if(err_code!=NULL)
+        *err_code=0;
+    return sqrtf(x+y);
+
+}

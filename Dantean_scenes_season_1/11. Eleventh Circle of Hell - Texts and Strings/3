@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int marks_counter(const char* text, int* uppercase, int* lowercase, int* whitespace);
+
+int main(void) {
+char tab[1001];
+printf("Podaj tekst :");
+scanf("%1000[^\n]s", tab);
+int upp, low, white; int *p_upp=&upp, *p_low=&low, *p_white=&white;
+marks_counter(tab,p_upp,p_low,p_white);
+printf("%d\n%d\n%d\n",*p_upp,*p_low,*p_white);
+
+}
+
+int marks_counter(const char* text, int* uppercase, int* lowercase, int* whitespace)
+{
+    if (text == NULL||uppercase == NULL||lowercase == NULL||whitespace == NULL) {
+        return 1;
+    }
+    *uppercase=0;
+    *lowercase=0;
+    *whitespace=0;
+
+    while(*text!='\0')
+    {
+        if(*text>='A'&&*text<='Z')
+        {
+            *uppercase+=1;
+        }
+        if(*text>='a'&&*text<='z')
+        {
+            *lowercase+=1;
+        }
+        if(*text==' '||*text == '\n'||*text == '\t')
+        {
+           *whitespace+=1;
+        }
+        text++;
+
+    }
+    return 0;
+}

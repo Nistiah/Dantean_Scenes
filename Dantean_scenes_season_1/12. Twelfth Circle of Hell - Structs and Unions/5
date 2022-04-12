@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <math.h>
+
+
+struct complex_t {
+    float re;
+    float im;
+};
+struct complex_t* set(struct complex_t* cp, float re, float im, int *err_code);
+void show(const struct complex_t* cp);
+float complex_abs(struct complex_t* cp, int * err_code);
+int main(){
+    struct complex_t cp, cp2;
+    float re, im;
+    char znak1, znak2;
+    int err_code;
+    printf("Enter a complex number:");
+    if(scanf("%f%c%c%f",&re, &znak1, &znak2, &im)!=4){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak1!='-'&&znak1!='+'){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak2!='i'||im<0){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak1=='-'){
+        im*=-1;
+    }
+    if(set(&cp,re,im, &err_code)==NULL){
+        printf("incorrect input");
+        return 1;
+    }
+
+    printf("Enter a complex number:");
+    if(scanf("%f%c%c%f",&re, &znak1, &znak2, &im)!=4){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak1!='-'&&znak1!='+'){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak2!='i'||im<0){
+        printf("incorrect input");
+        return 1;
+    }
+    if(znak1=='-'){
+        im*=-1;
+    }
+    if(set(&cp2,re,im, &err_code)==NULL){
+        printf("incorrect input");
+        return 1;
+    }
+    show(&cp);
+    printf("\n");
+    show(&cp2);
+    printf("\n");
+    float pierwszy, drugi;
+    pierwszy=complex_abs(&cp,&err_code);
+    if(pierwszy==-1||err_code!=0){
+        printf("incorrect input");
+        return 1;
+    }
+    drugi=complex_abs(&cp2,&err_code);
+    if(drugi==-1||err_code!=0) {
+        printf("incorrect input");
+        return 1;
+    }
+    if(pierwszy==drugi){
+        printf("EQUAL");
+        return 0;
+    }else if(pierwszy>drugi){
+        printf("FIRST");
+        return 0;
+    }else if(pierwszy<drugi){
+        printf("SECOND");
+        return 0;
+    }
+    return 1;
+
+}
+struct complex_t* set(struct complex_t* cp, float re, float im, int *err_code) {
+    if (cp == NULL) {
+        if(err_code !=NULL)
+            *err_code = 1;
+        return NULL;
+    }
+    cp->re = re;
+    cp->im = im;
+    if(err_code !=NULL)
+        *err_code = 0;
+    return cp;
+
+}
+void show(const struct complex_t* cp){
+    if(cp!=NULL){
+        if(cp->im<0){
+            printf("%f-i%f", cp->re, cp->im*-1);
+        }else if((cp->im>0)){
+            printf("%f+i%f", cp->re, cp->im);
+        }else{
+            printf("%f", cp->re);
+        }
+    }
+}
+float complex_abs(struct complex_t* cp, int * err_code){
+    if(cp==NULL){
+        if(err_code !=NULL)
+            *err_code=1;
+        return -1;
+    }
+    float x=cp->re; float y=cp->im;
+    x*=x;
+    y*=y;
+    if(x<0){x*=-1;}
+    if(y<0){y*=-1;}
+    double modul=x+y;
+    if (modul<0){modul*=-1;}
+    modul=sqrt(modul);
+    if(err_code !=NULL)
+        *err_code=0;
+    return (float)modul;
+}
