@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float zmienna;
+
+    printf("Wprowadz 5 liczb: ");
+    scanf("%f", &zmienna);
+    zmienna = 2*pow(zmienna, 3)-4*pow(zmienna, 2)+3*zmienna-7;
+    printf("%f", zmienna);
+    return 0;
+}

@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+float zmienna;
+float zmienna2;
+float zmienna3;
+float zmienna4;
+float zmienna5;
+printf("Wprowadz 5 liczb: ");
+scanf("%f", &zmienna);
+scanf("%f", &zmienna2);
+scanf("%f", &zmienna3);
+scanf("%f", &zmienna4);
+scanf("%f", &zmienna5);
+
+
+printf("%.4f",0.2*(zmienna+zmienna2+zmienna3+zmienna4+zmienna5));
+
+  return 0;
+}

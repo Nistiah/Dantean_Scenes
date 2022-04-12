@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(void) {
+float zmienna;
+printf("Wprowadz liczbe: ");
+scanf("%f", &zmienna);
+printf("%f \n%f",zmienna,zmienna*10);
+
+  return 0;
+}

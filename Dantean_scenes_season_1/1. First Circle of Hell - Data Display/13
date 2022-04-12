@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main(void) {
+int zmienna;
+int zmienna2;
+printf("Wprowadz pierwsza liczbe: ");
+scanf("%d", &zmienna);
+printf("Wprowadz druga liczbe: ");
+scanf("%d", &zmienna2);
+printf("%d \n%d \n%d \n%d",zmienna+zmienna2, zmienna-zmienna2,zmienna*zmienna2, zmienna/zmienna2);
+
+  return 0;
+}

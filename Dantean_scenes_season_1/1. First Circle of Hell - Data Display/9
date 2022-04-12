@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main(void) {
+int zmienna=2; 
+int innaZmienna=4;
+double iloraz=(double)zmienna/innaZmienna;
+printf("%.d  %.d\n", zmienna, innaZmienna);
+printf("iloczyn %d\n", zmienna*innaZmienna);
+printf("iloraz %.2lf\n", iloraz);
+printf("suma %d\n", zmienna+innaZmienna);
+printf("rĂłĹźnica %d\n", zmienna-innaZmienna);
+  return 0;
+}

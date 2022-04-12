@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+#define M_PI 3.14159265358979323846
+
+int main() {
+    float zmienna;
+    float zmienna2;
+    float zmienna3;
+
+    printf("Wprowadz 2 przyprostokÄtne trojkata: ");
+    scanf("%f", &zmienna );
+    printf("tekst na druga liczbe bo dante musi miec dwa: ");
+    scanf("%f", &zmienna2 );
+    zmienna3=sqrt(zmienna*zmienna+zmienna2*zmienna2);
+    printf("%.2f\n", zmienna3);
+    printf("%.2f\n", acos(zmienna/zmienna3)*180/M_PI); //z bokow radiany i te na kÄt w stopniach
+    printf("%.2f\n", 90-acos(zmienna/zmienna3)*180/M_PI);
+    return 0;
+}

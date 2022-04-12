@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+int zmienna;
+int zmienna2;
+int zmienna3;
+int zmienna4;
+int zmienna5;
+int zmienna6;
+int zmienna7;
+int zmienna8;
+int zmienna9;
+int zmienna10;
+printf("Wprowadz 1 liczbe: ");
+scanf("%d", &zmienna);
+printf("Wprowadz 2 liczbe: ");
+scanf("%d", &zmienna2);
+printf("Wprowadz 3 liczbe: ");
+scanf("%d", &zmienna3);
+printf("Wprowadz 4 liczbe: ");
+scanf("%d", &zmienna4);
+printf("Wprowadz 5 liczbe: ");
+scanf("%d", &zmienna5);
+printf("Wprowadz 6 liczbe: ");
+scanf("%d", &zmienna6);
+printf("Wprowadz 7 liczbe: ");
+scanf("%d", &zmienna7);
+printf("Wprowadz 8 liczbe: ");
+scanf("%d", &zmienna8);
+printf("Wprowadz 9 liczbe: ");
+scanf("%d", &zmienna9);
+printf("Wprowadz 10 liczbe: ");
+scanf("%d", &zmienna10);
+
+printf("%.4f",(double)0.1*(zmienna+zmienna2+zmienna3+zmienna4+zmienna5+zmienna6+zmienna7+zmienna8+zmienna9+zmienna10));
+
+  return 0;
+}

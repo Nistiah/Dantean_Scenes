@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main(void) {
+float zmienna=2; 
+float innaZmienna=4;
+
+printf("%f  %f\n", zmienna, innaZmienna);
+printf("iloczyn %f\n", zmienna*innaZmienna);
+printf("iloraz %.2f\n", zmienna/innaZmienna);
+printf("suma %f\n", zmienna+innaZmienna);
+printf("rĂłĹźnica %f\n", zmienna-innaZmienna);
+  return 0;
+}
