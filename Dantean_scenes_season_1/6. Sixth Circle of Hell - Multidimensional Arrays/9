@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+
+
+
+int main(){
+    int tab[10][10];
+    int parzyste=0, nieparzyste=0;
+    printf("podaj macierz o wymiarach 10X10:");
+    for(int i=0; i<10; i++)
+    {
+        for (int j=0; j<10;j++)
+        {
+            if(scanf("%d", &tab[i][j])!=1)
+            {
+                printf("incorrect input");
+                return 1;
+            }
+            if((i+j)%2==0)
+            {
+                parzyste+=tab[i][j];
+            }else
+            {
+                nieparzyste+=tab[i][j];
+            }
+        }
+    }
+    printf("\n%d", parzyste-nieparzyste);
+
+    return 0;
+    }
+
+

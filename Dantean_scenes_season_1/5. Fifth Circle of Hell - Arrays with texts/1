@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(){
+    int tab[26];
+    for(int i=65, j=0; i<91;i++, j++)
+    {
+        tab[j]=i;
+        printf("%d  %c  %c\n", tab[j], tab[j], tab[j]+32);
+    }
+
+        return 0;
+    }
+
+

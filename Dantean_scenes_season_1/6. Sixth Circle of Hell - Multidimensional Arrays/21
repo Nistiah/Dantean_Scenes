@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main(){
+int tab[5][5];
+double tabN[5];
+double srednia=0;
+printf("podaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+    }
+}
+    for(int i=0; i<5; i++) {
+        for (int j = 0; j < 5; j++) {
+            srednia+=tab[j][i];
+        }
+        tabN[i]=(srednia/5);
+        srednia=0;
+    }
+
+
+for (int i=0; i<5;i++) {
+    printf("%.2lf ", tabN[i]);
+}
+
+return 0;
+}

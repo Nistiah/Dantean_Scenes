@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+
+int main() {
+    printf("Podaj liczbe: ");
+    int liczba;
+    if(scanf("%d", &liczba)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+   long long int liczbaP=1;
+    if(liczba>20||liczba<0)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    for(int i=1; i<(liczba+1); i++)
+    {
+        liczbaP*=i;
+    }
+    printf("%llu ", liczbaP);
+
+    return 0;
+}

@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+int main(){
+int tab[5][5];
+int tab2[5][5];
+int tab3[6];
+tab3[0]=0;
+int licznik=0, c=0;
+printf("podaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+    }
+}
+printf("\npodaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab2[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+    }
+}
+
+for (int i=0; i<5;i++){
+    for(int j=0;j<5;j++)
+    {
+        if (j==0)
+        {
+            for(int m=0; m<5;m++) {
+                if (tab[j][i] == tab2[m][i]) {
+                    licznik++;
+                    tab3[licznik] = tab[j][i];
+                    break;
+                }
+            }
+        }
+        else{
+            for(int n=j-1; n>=0;n--)
+            {
+                if(tab[j][i]==tab[n][i])
+                    c++;
+            }
+            if(c==0){
+                for(int m=0; m<5;m++) {
+                    if (tab[j][i] == tab2[m][i]) {
+                        licznik++;
+                        tab3[licznik] = tab[j][i];
+                        break;
+                    }
+                }
+            }else{c=0;}
+        }
+    }
+    printf("%d ", licznik);
+    if(licznik!=0){
+    for(int m=1; m<=licznik; m++)
+    {
+        printf("%d ",tab3[m]);
+        }
+        printf("\n");
+    }
+    licznik=0;
+}
+return 0;
+}

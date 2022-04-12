@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <string.h>
+//#include <stdlib.h>
+
+
+int main(){
+    char tekst[2000];
+    unsigned int index[1000];
+    int max=0, w, liczba=0;
+    unsigned int x =0;
+    w=0;
+    printf("Podaj ImiÄ:\n");
+    fgets(tekst, 1500, stdin);
+    unsigned int dlugosc=1000;
+    if (strlen(tekst)<dlugosc)
+        dlugosc=strlen(tekst);
+
+
+    for (unsigned int i =0; i<dlugosc; i++)
+    {
+        if ((((tekst[i])<65)||((tekst[i]>90)&&(tekst[i]<97))||(tekst[i]>122))&&(tekst[i]!=32)&&(tekst[i]!='\n'))
+        {
+            printf("incorrect input");
+            return 1;
+        }
+        if(((tekst[i]>64)&&tekst[i]<91)||((tekst[i]>96)&&(tekst[i]<123)))
+        {
+            w++;
+        }
+        if(tekst[i]==32||tekst[i]=='\n'||i==dlugosc-1) {
+            if (w >= max)
+            {
+                max = w;
+            }
+            w=0;
+        }
+    }
+    w=0;
+    for (unsigned int i =0; i<dlugosc; i++)
+    {
+        if((((tekst[i])>64)&&tekst[i]<91)||((tekst[i]>96)&&(tekst[i]<123)))
+        {
+            w++;
+        }
+        if(w==max)
+        {
+            liczba++;
+            index[x]=i;
+            x++;
+            w=0;
+        }
+        if(tekst[i]==32)
+        {
+            w=0;
+        }
+
+    }
+
+    printf("%d %d\n", liczba, max);
+    for(int i=liczba-1; i>-1; i--)
+    {
+        for(int j=0; j<max; j++) {
+           printf("%c", tekst[index[i]+j-max+1]);
+        }
+        printf("\n");
+    }
+
+
+
+
+
+
+    return 0;
+}

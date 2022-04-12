@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int pierwsza(int a)
+{
+    for (int i=2; i<a; i++)
+    {
+        if(a%i==0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    int tab[11];
+ printf("podaj 2 liczby: ");
+    for(int i=0; i<10; i+=2) {
+        if (scanf("%d %d", &tab[i], &tab[i + 1]) != 2) {
+            printf("Input data type error\n");
+            return 1;
+        }
+    }
+    for(int i=0; i<10; i++)
+    {
+        if (tab[i]==0||tab[i]==1||tab[i]<0)
+        {
+            printf("%d other\n", tab[i]);
+        }
+        else
+            {
+                if (pierwsza(tab[i])==0||tab[i]==2||tab[i]==3)
+                {
+                    printf("%d prime\n", tab[i]);
+                }else
+                {
+                    printf("%d composite\n", tab[i]);
+                }
+
+            }
+    }
+
+
+
+    return 0;
+
+
+}

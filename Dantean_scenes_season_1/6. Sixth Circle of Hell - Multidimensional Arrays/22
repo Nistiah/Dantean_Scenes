@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+int main(){
+int tab[5][5];
+int max, min, roznica;
+printf("podaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+    }
+}
+    for(int i=0; i<5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (j == 0) {
+                min = tab[j][i];
+                max = tab[j][i];
+
+            } else {
+                if (tab[j][i] > max) {
+                    max = tab[j][i];
+
+                }
+                if (tab[j][i] < min) {
+                    min = tab[j][i];
+
+                }
+            }
+        }
+        if(i==0)
+        {
+            roznica=max-min;
+        }else {
+            if (max - min> roznica) {
+                roznica = (max - min);
+            } else if (max - min == roznica) {
+                roznica = (max - min);
+            }
+        }
+    }
+
+    for(int i=0; i<5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (j == 0) {
+                min = tab[j][i];
+                max = tab[j][i];
+
+            } else {
+                if (tab[j][i] > max) {
+                    max = tab[j][i];
+
+                }
+                if (tab[j][i] < min) {
+                    min = tab[j][i];
+
+                }
+            }
+        }
+        if((max-min)==roznica)
+        {
+            for(int m=0; m<5; m++)
+            {
+                printf("%d ",tab[m][i]);
+            }
+            printf("\n");
+        }
+
+    }
+
+
+
+
+return 0;
+}

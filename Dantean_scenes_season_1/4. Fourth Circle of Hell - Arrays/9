@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+double srednia;
+int main() {
+    int tab[100], j=100, suma=0;
+    double srednia =0;
+    printf("tekst zachety :))) : ");
+    for(int i=0; i<100; i++) {
+        if (scanf("%d", &tab[i]) != 1) {
+            printf("Incorrect input\n");
+            return 1;
+        }
+        if(tab[i]==-1)
+        {j=i;
+            break;}
+        srednia=srednia+tab[i];
+    }
+    int Min =tab[0];
+    int Max=tab[0];
+    for(int i=1; i<j; i++)
+    {
+        if (tab[i]<Min)
+        {
+            Min=tab[i];
+        }
+        if (tab[i]>Max)
+        {
+            Max=tab[i];
+        }
+    }
+    suma=srednia;
+    srednia/=j;
+    printf("%d\n%d\n%d\n%lf\n%d\n",j, Min, Max, srednia, suma);
+
+    return 0;
+
+
+}

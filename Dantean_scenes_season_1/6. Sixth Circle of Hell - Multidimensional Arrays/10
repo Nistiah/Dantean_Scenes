@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+
+
+
+int main(){
+    int tab[10][10];
+    int max=-1, kolumna=0, wiersz=0;
+    printf("podaj macierz o wymiarach 10X10:");
+    for(int i=0; i<10; i++)
+    {
+        for (int j=0; j<10;j++)
+        {
+            if(scanf("%d", &tab[i][j])!=1)
+            {
+                printf("incorrect input");
+                return 1;
+            }
+            if(max==-1) {
+                if (tab[i][j] % 2 == 0) {
+                    max = tab[i][j];
+                }
+            }else{
+               if ((tab[i][j] % 2 == 0)&&(tab[i][j]>max))
+               {
+                   max=tab[i][j];
+               }
+            }
+        }
+    }
+    if(max==-1) {
+        printf("Nothing to show");
+    }else {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (tab[i][j] == max) {
+                    printf("%d %d ", j, i);
+                    for (int m = 0; m < 10; m++) {
+                        wiersz += tab[i][m];
+                        kolumna += tab[m][j];
+                    }
+                    printf("%d\n", wiersz - kolumna);
+                    wiersz = 0;
+                    kolumna = 0;
+                }
+            }
+        }
+    }
+
+    return 0;
+    }
+
+

@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+
+
+
+int main(){
+    char tekst[12];
+    printf("Podaj ImiÄ:\n");
+    fgets(tekst, 12, stdin);
+    if(tekst[strlen(tekst)-2]=='a')
+    {
+        printf("Imie zenskie");
+    }else
+        printf("Imie meskie\n");
+
+    
+
+    return 0;
+}
+
+
+
+

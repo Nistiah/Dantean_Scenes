@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+
+int main() {
+    printf("Podaj kolejna liczbe: ");
+    double liczba1, liczba2=1;
+    if(scanf("%lf", &liczba1)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    while(liczba1!=0&&liczba2!=0)
+    {
+        printf("Podaj kolejna liczbe: ");
+        if(scanf("%lf", &liczba2)!=1)
+        {
+            printf("Incorrect input");
+            return 1;
+        }
+        if(liczba2!=0) {
+            printf("%lf \n", (liczba2 - liczba1));
+        }
+        liczba1=liczba2;
+    }
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main(){
+int tab[5][5];
+int tab2[5][5];
+int sumaA[5]={0,0,0,0,0};
+int sumaB[5]={0,0,0,0,0};
+int tabC[5][5];
+printf("podaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+        sumaA[j]+=tab[i][j];
+    }
+}
+printf("\npodaj liczby:\n");
+for(int i=0; i<5; i++) {
+    for (int j = 0; j < 5; j++) {
+        if (scanf("%d", &tab2[i][j]) != 1) {
+            printf("incorrect input");
+            return 1;
+        }
+        sumaB[j]+=tab2[i][j];
+    }
+}
+
+for (int i=0; i<5;i++){
+    for(int j=0;j<5;j++)
+    {
+       if (sumaA[i]>sumaB[i]) {
+           tabC[j][i]=tab[j][i];
+       }else if(sumaA[i]<sumaB[i]){
+           tabC[j][i]=tab2[j][i];
+            }else{
+           tabC[j][i]=tab[j][i];
+       }
+        }
+    }
+
+    for (int i=0; i<5;i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", tabC[i][j]);
+        }
+        printf("\n");
+    }
+
+return 0;
+}

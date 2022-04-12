@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+//#include <stdlib.h>  /5.8 srante
+
+
+int main(){
+    char tekst[101];
+    char tab[320];
+    printf("Podaj ImiÄ:\n");
+    fgets(tekst, 101, stdin);
+    if(tekst[strlen(tekst)-1]!='\n')
+    {
+        printf("Input is too long");
+        return 2;
+    }
+    for (unsigned int i =0; i<strlen(tekst)-1; i++)
+    {
+        if (((tekst[i])<48)||((tekst[i]>57)&& (tekst[i]<97))||(tekst[i]>122)||((tekst[strlen(tekst)-2]>47)&&(tekst[strlen(tekst)-2]<58)))
+        {
+            printf("incorrect input");
+            return 1;
+        }
+        if (i>1) {
+            if (((tekst[i] > 47) && (tekst[i] < 58)) && ((tekst[i - 1] > 47) && (tekst[i - 1] < 58))) {
+                printf("incorrect input");
+                return 1;
+            }
+        }
+    }
+    int w=0;
+
+    for (unsigned int i =strlen(tekst)-1; i>0; i--)
+    {
+        if ((tekst[i-1]>47)&&(tekst[i-1]<58))
+        {
+            for(int j =1; j<(tekst[i-1])-48; j++)
+            {
+                tab[w]=tekst[i];
+                w++;
+            }
+        }else {
+            tab[w]=tekst[i-1];
+            w++;
+        }
+    }
+    if(w>200)
+    {
+        printf("Output is too long");
+        return 3;
+    }
+
+    for (int i=0; i<w; i++)
+    {
+        printf("%c", tab[i]);
+    }
+
+
+
+
+    return 0;
+}

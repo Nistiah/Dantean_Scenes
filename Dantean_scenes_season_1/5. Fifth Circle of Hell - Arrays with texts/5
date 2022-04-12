@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+
+
+
+int main(){
+    char tekst[1001];
+    printf("Tekst zachÄty dla dante ree:");
+    fgets(tekst, 1001, stdin);
+    int wartosc=0;
+    int tab[12]={0};
+    for(long unsigned int i=0; i<strlen(tekst); i++)
+    {
+        switch (tekst[i]) {
+            case 'A':
+                tab[0]=1;
+                break;
+            case 'a':
+                tab[1]=1;
+                break;
+            case 'E':
+                tab[2]=1;
+                break;
+            case 'e':
+                tab[3]=1;
+                break;
+            case 'I':
+                tab[4]=1;
+                break;
+            case 'i':
+                tab[5]=1;
+                break;
+            case 'O':
+                tab[6]=1;
+                break;
+            case 'o':
+                tab[7]=1;
+                break;
+            case 'U':
+                tab[8]=1;
+                break;
+            case 'u':
+                tab[9]=1;
+                break;
+            case 'Y':
+                tab[10]=1;
+                break;
+            case 'y':
+                tab[11]=1;
+                break;
+            default:
+                break;
+        }
+    }
+    for (int i=0; i<12; i++)
+    {
+        if ((tab[i]==1))
+            wartosc++;
+    }
+
+    printf("Wynik: %d", wartosc);
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+
+
+int main(){
+    char tekst[31];
+    printf("Tekst zachÄty dla dante ree:");
+    fgets(tekst, 31, stdin);
+    unsigned int len = strlen(tekst);
+    if (len>0&&tekst[len-1]=='\n')
+        tekst[len-1]='\0';
+    if (len>0&&tekst[len-2]==' ')
+        tekst[len-2]='\0';
+    printf("Witaj %s!", tekst);
+
+    return 0;
+    }
+
+

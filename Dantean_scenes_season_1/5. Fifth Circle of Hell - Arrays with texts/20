@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+//#include <stdlib.h>  /5.8 srante
+
+
+int main(){
+    char tekst[1001];
+    int znakKodowy;
+    printf("Podaj teskt:");
+    fgets(tekst, 1001, stdin);
+    printf("Podaj znak kodowy:");
+    scanf("%d", &znakKodowy);
+    for(unsigned int i=0; i<strlen(tekst); i++)
+    {
+        if((tekst[i]>64)&&(tekst[i]<91))
+        {
+            if((tekst[i]+znakKodowy)>90)
+            {
+                tekst[i]-=26;
+            }
+        printf("%c", tekst[i]+znakKodowy);
+        }
+        else if((tekst[i]>96)&&(tekst[i]<123))
+        {
+            if((tekst[i]+znakKodowy)>122)
+            {
+                tekst[i]-=26;
+            }
+            printf("%c", tekst[i]+znakKodowy);
+        }else
+            printf("%c", tekst[i]);
+
+    }
+
+    return 0;
+}
+
+
+
+

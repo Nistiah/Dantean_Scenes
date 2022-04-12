@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+
+int main() {
+    printf("Podaj min: ");
+    double min;
+    if(scanf("%lf", &min)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("Podaj max: ");
+    double max;
+    if(scanf("%lf", &max)!=1)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    if(max<min)
+    {
+        printf("Incorrect range");
+        return 2;
+    }
+    for(double i=min; i<(max+0.25); i+=0.25)
+    {printf("%.2lf ", i);}
+
+    return 0;
+}

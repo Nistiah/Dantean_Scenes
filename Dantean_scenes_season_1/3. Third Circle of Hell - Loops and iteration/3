@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    double kwota;
+    int okres;
+    printf("podaj kwote :");
+    if(scanf("%lf", &kwota)!=1||kwota<0)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    printf("podaj okres w miesiÄcach:");
+    if(scanf("%d",  &okres)!=1||okres<0)
+    {
+        printf("Incorrect input");
+        return 1;
+    }
+    for(int i=1;i<(okres+1);i++)
+    {
+        kwota*=1.01;
+    }
+    printf("%.2lf", kwota);
+    return 0;
+}
