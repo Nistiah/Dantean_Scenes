@@ -1,0 +1,33 @@
+#include <stdio.h>
+    int main() {
+    double a,b,c,d,e,max,min;
+    double srednia;
+    printf("podaj 5 liczb cakowitych:");
+    scanf("%lf %lf %lf %lf %lf",&a, &b, &c, &d, &e);
+    srednia=(a+b+c+d+e)/5;
+    if(a>b)
+    {
+        min=b;
+        max=a;
+    }else if(a<=b)
+    {
+        min=a;
+        max=b;
+    }
+    if(c>max)
+    {max=c;}
+    if(d>max)
+    {max=d;}
+    if(e>max)
+    {max=e;}
+    if(c<min)
+    {min=c;}
+    if(d<min)
+    {min=d;}
+    if(e<min)
+    {min=e;}
+printf("%.2lf\n%.2lf\n%.2lf",min, max, srednia);
+        return 0;
+    }
+
+

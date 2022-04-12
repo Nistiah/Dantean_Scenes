@@ -1,0 +1,37 @@
+#include <stdio.h>
+    int main() {
+    int energia, b;
+    double vat = 1.22;
+        printf("podaj liczbe kWh energii");
+        b=scanf("%d", &energia);
+        if(b==1)
+        {
+            if(energia>0&&energia<=50)
+            {
+               printf("kwota brutto za %d kWh to: %.2f", energia, (double)energia*0.5*vat);
+            }
+            else if (energia>50&&energia<=150)
+            {
+                printf("kwota brutto za %d kWh to: %.2f", energia, (double)(50*0.5*vat+(energia-50)*0.75*vat));
+            }
+            else if (energia>150&&energia<=250)
+            {
+                printf("kwota brutto za %d kWh to: %.2f", energia, (double)(50*0.5*vat+100*0.75*vat+(energia-150)*1.2*vat));
+            }
+            else if (energia>250)
+            {
+                printf("kwota brutto za %d kWh to: %.2f",energia, (double)(50*0.5*vat+100*0.75*vat+100*1.2*vat+(energia-250)*1.5*vat));
+            }else
+            {
+                printf("Incorrect input");
+                return 1;
+            }
+        }else
+        {
+            printf("Incorrect input");
+            return 1;
+        }
+        return 0;
+    }
+
+

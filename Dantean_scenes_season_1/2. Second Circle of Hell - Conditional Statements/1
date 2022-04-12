@@ -1,0 +1,20 @@
+
+#include <stdio.h>
+
+    int main() {
+
+        int zmienna;
+        int zmienna2;
+        printf("Podaj dwie liczby: ");
+        int intg = scanf("%d %d", &zmienna, &zmienna2);
+
+        if(intg != 2) {
+            printf("Incorrect input");
+            return 1;
+        }
+        printf("%d", zmienna + zmienna2);
+
+        return 0;
+    }
+
+

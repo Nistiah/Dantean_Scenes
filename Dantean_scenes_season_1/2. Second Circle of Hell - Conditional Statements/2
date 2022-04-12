@@ -1,0 +1,14 @@
+#include <stdio.h>
+    int main() {
+        int a,b,c,d;
+        printf("Podaj numer telefonu:");
+        if(scanf("(%2d) %3d-%2d-%2d", &a ,&b, &c, &d)!=4)
+        {
+            printf("Incorrect input");
+            return 1;
+        }
+        printf("%02d\n%03d-%02d-%02d",a,b,c,d);
+        return 0;
+    }
+
+

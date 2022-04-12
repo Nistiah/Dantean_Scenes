@@ -1,0 +1,109 @@
+#include <stdio.h>
+int main() {
+    double a,b,c,d,e,max,min;
+    double srednia;
+    printf("podaj 5 liczb cakowitych:\n");
+    scanf("%lf",&a);
+    if(a==-1)
+    {
+        printf("brak min, max czy Ĺredniej");
+        return 0;
+    }
+    scanf("%lf",&b);
+    if(b==-1)
+    {
+        srednia=(a);
+        min =a;
+        max=a;
+        goto td;}
+
+    scanf("%lf",&c);
+    if(c==-1)
+    {
+        srednia=(a+b)/2;
+        if(a>b)
+        {
+            max=a;
+            min = b;
+        }else
+        {
+            max = b;
+            min = a;
+        }
+        goto td;}
+
+    scanf("%lf",&d);
+    if(d==-1)
+    {
+        srednia=(a+b+c)/3;
+        if(a>b)
+        {
+            max=a;
+            min = b;
+        }else
+        {
+            max = b;
+            min = a;
+        }
+        if(c>max)
+        {max=c;}
+        if(c<min)
+        {min=c;}
+        goto td;}
+    scanf("%lf",&e);
+        if(e==-1)
+        {
+            srednia=(a+b+c+d)/4;
+            if(a>b)
+            {
+                max=a;
+                min = b;
+            }else
+            {
+                max = b;
+                min = a;
+            }
+            if(c>max)
+            {max=c;}
+            if(c<min)
+            {min=c;}
+            if(d>max)
+            {max=d;}
+            if(d<min)
+            {min=d;}
+            goto td;}
+
+    srednia=(a+b+c+d+e)/5;
+    if(a>b)
+    {
+        min=b;
+        max=a;
+    }else if(a<=b)
+    {
+        min=a;
+        max=b;
+    }
+    if(c>max)
+    {max=c;}
+    if(d>max)
+    {max=d;}
+    if(e>max)
+    {max=e;}
+    if(c<min)
+    {min=c;}
+    if(d<min)
+    {min=d;}
+    if(e<min)
+    {min=e;}
+
+    td:
+    printf("%.2lf\n%.2lf\n%.2lf",min, max, srednia);
+    return 0;
+}
+
+
+
+
+
+
+
